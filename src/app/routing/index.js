@@ -6,11 +6,11 @@ import Admin from './privateRouting/admin';
 
 function Router(props) {
   return (
-         <Fragment>
-	         <Switch>
-              <Route component = {App} fallBack = {'/56756'} path = '/'/>
-	         </Switch>
-         </Fragment>
+        <Fragment>
+            <Switch>
+            <Route component = {App} fallBack = {'/56756'} path = '/'/>
+            </Switch>
+        </Fragment>
   );
 }
 
