@@ -43,6 +43,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    // maxWidth: '1200px',
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -117,6 +118,10 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  wrapper: {
+    maxWidth: '1200px',
+
+  },
 }));
 
 function Dashboard(props) {
@@ -125,10 +130,10 @@ function Dashboard(props) {
   const [orders, setOrders] = React.useState([]);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpen(!true);
   };
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpen(!false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -140,19 +145,15 @@ function Dashboard(props) {
 
   return (
     <div className={classes.root}>
-      <button onClick = {() => {
-        props.logoutAction('token');
-        props.deleteOrders('getOrders');
-      }}></button>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar position="absolute" className={clsx(classes.appBar, !open && classes.appBarShift)} >
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            className={clsx(classes.menuButton, !open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>
@@ -169,7 +170,7 @@ function Dashboard(props) {
       <Drawer
         variant="permanent"
         classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          paper: clsx(classes.drawerPaper, open && classes.drawerPaperClose),
         }}
         open={open}
       >
