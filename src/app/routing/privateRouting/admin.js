@@ -15,11 +15,7 @@ const Admin = (props) => (
             );
           }
           return (
-            <>
-          <div>Hello</div>
-          {/*  <Redirect to = {props.fallBack}/> */}
-           <PageComponent {...newProps}/>
-            </>
+          <Redirect to = {props.fallBack}/>
           );
         }}
     />

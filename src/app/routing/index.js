@@ -8,7 +8,7 @@ function Router(props) {
   return (
          <Fragment>
 	         <Switch>
-              <Admin component = {App} fallBack = {'/56756'} path = '/'/>
+              <Route component = {App} fallBack = {'/56756'} path = '/'/>
 	         </Switch>
          </Fragment>
   );
