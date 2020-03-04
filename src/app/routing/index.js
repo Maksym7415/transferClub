@@ -7,22 +7,17 @@ import App from '../App';
 import Admin from './privateRouting/admin';
 import AdminPage from '../pages/Admin';
 import ClientPage from '../pages/client';
+import Orders from '../pages/client/orders';
 
 function Router(props) {
   return (
         <Fragment>
-          <ThemeProvider>
             <Switch>
             {/* <Route component = {App} fallBack = {'/56756'} path = '/'/> */}
-            <Route component = {AdminPage} path = '/'/>
-            <Route component = {ClientPage} path = '/client'/>
+            <Route component = {AdminPage} exact path = '/'/>
+            <Route component = {ClientPage} exact path = '/client'/>
+            <Route component = {Orders} exact path = '/client/orders'/>
             </Switch>
-            <ThemeProvider>
-                <Switch>
-                {/* <Route component = {App} fallBack = {'/56756'} path = '/'/> */}
-                <Route component = {AdminPage} path = '/'/>
-                </Switch>
-            </ThemeProvider>
         </Fragment>
   );
 }
