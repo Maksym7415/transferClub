@@ -14,7 +14,7 @@ export default () => makeStyles((theme) => ({
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
@@ -115,8 +115,7 @@ export default () => makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   orders: {
-    width: '20%',
-    marginTop: '100px',
+    width: '50%',
     flexGrow: 1,
 
   },
@@ -126,5 +125,14 @@ export default () => makeStyles((theme) => ({
     alignItems: 'center',
     padding: theme.spacing(2),
     fontFamily: 'Roboto',
+  },
+  orderItemContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  orderHeader: {
+    marginTop: '100px',
+    marginLeft: '20%',
   },
 }));

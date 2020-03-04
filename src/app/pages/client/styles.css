@@ -1,6 +1,40 @@
-.makeStyles-orderItem-23 p {
+.order-item p {
     margin: 0;
+    font-size: 18px;
 }
-.makeStyles-orderItem-23 div {
-    margin-right: 30px;
+.order-item * {
+    flex-wrap: wrap;
+}
+.orders {
+    margin-left: 20%;
+}
+.order-item > div > div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.order-item > div > div:first-child svg {
+    width: 30px;
+    color: green
+}
+.order-item > div > div:first-child span:last-child {
+    margin-left: auto;
+}
+.order-item > div > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.order-item > div > div:last-child > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.order-item > div > div:last-child > div svg {
+    width: 15px;
+    margin-right: 10px;
+    color: #1c641c96
 }

@@ -18,6 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Input from '@material-ui/core/Input';
+import PaymentIcon from '@material-ui/icons/Payment';
 import useStyles from '../styles';
 
 
@@ -64,6 +65,10 @@ const Header = (props) => {
           open={open}
         >
           <div className={classes.toolbarIcon}>
+            <div>
+              <img />
+              <span>Client name</span>
+            </div>
             <IconButton onClick={handleDrawerClose}>
               <ChevronLeftIcon />
             </IconButton>
@@ -83,13 +88,13 @@ const Header = (props) => {
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <ShoppingCartIcon />
+              <PaymentIcon />
             </ListItemIcon>
             <ListItemText primary="Payment" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <ShoppingCartIcon />
+              <PaymentIcon />
             </ListItemIcon>
             <ListItemText primary="Statistics" />
           </ListItem>
