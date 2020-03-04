@@ -10,6 +10,8 @@ import Admin from './privateRouting/admin';
 import AdminPage from '../pages/Admin/Admin';
 import ProgilePage from '../pages/Admin/Profile';
 import RegistrationPage from '../pages/Admin/Registration';
+import ClientPage from '../pages/client';
+import Orders from '../pages/client/orders';
 
 const theme = {
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -17,15 +19,13 @@ const theme = {
 function Router(props) {
   return (
         <Fragment>
-
-            {/* <ThemeProvider > */}
-                <Switch>
-                {/* <Route component = {App} fallBack = {'/56756'} path = '/'/> */}
-                <Route component = {AdminPage} exact path = '/admin'/>
-                <Route component = {ProgilePage} exact path = '/admin/myProfile'/>
-                <Route component = {RegistrationPage} exact path = '/admin/registration'/>
-                </Switch>
-            {/* </ThemeProvider> */}
+          <Switch>
+            <Route component = {AdminPage} exact path = '/admin'/>
+            <Route component = {ProgilePage} exact path = '/admin/myProfile'/>
+            <Route component = {RegistrationPage} exact path = '/admin/registration'/>
+            <Route component = {ClientPage} exact path = '/client'/>
+            <Route component = {Orders} exact path = '/client/orders'/>
+          </Switch>
         </Fragment>
   );
 }

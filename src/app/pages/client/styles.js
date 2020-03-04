@@ -1,11 +1,10 @@
-import { makeStyles } from '@material-ui/core/styles';
 
+import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
-
 export default () => makeStyles((theme) => ({
-  root: {
+  client: {
     display: 'flex',
     // maxWidth: '1200px',
   },
@@ -63,7 +62,7 @@ export default () => makeStyles((theme) => ({
       width: theme.spacing(9),
     },
   },
-  appBarSpacer: theme.mixins.toolbar,
+  // appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     height: '100vh',
@@ -72,33 +71,60 @@ export default () => makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    maxWidth: '100vw',
+    height: '100%',
+    width: '40%',
+  },
+  centerContainer: {
+    display: 'flex',
+    marginTop: '50px',
+    justifyContent: 'center',
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: `0 ${theme.spacing(1)}`,
     display: 'flex',
     overflow: 'auto',
-    flexDirection: 'column',
+    marginBottom: theme.spacing(1),
+    alignItems: 'center',
+    width: '100%',
+    border: '1px solid grey',
+    height: '40px',
   },
   fixedHeight: {
     height: 240,
   },
-  profilePaper: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+  wrapper: {
+    maxWidth: '1200px',
+  },
+  tabPanelContainer: {
+    width: '100%',
+    backgroundColor: 'white',
+    opacity: '0.5',
+  },
+  tabPanel: {
+    width: '100%',
+  },
+  getOffers: {
+    margin: '0 auto',
+  },
+  formControl: {
+    height: '100%',
+    width: '100%',
+  },
+  select: {
+    height: '100%',
+    paddingLeft: theme.spacing(1),
+  },
+  orders: {
+    width: '20%',
+    marginTop: '100px',
+    flexGrow: 1,
 
   },
-  grid: {
-    flexGrow: 1,
-  },
-  profilePaperRegistr: {
-    marginTop: theme.spacing(2),
-    padding: theme.spacing(1),
+  orderItem: {
     display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+    fontFamily: 'Roboto',
   },
 }));
-export default useStyles;
