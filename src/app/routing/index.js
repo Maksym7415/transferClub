@@ -21,9 +21,9 @@ function Router(props) {
             {/* <ThemeProvider > */}
                 <Switch>
                 {/* <Route component = {App} fallBack = {'/56756'} path = '/'/> */}
-                <Route component = {AdminPage} exact path = '/'/>
-                <Route component = {ProgilePage} exact path = '/myProfile'/>
-                <Route component = {RegistrationPage} exact path = '/registration'/>
+                <Route component = {AdminPage} exact path = '/admin'/>
+                <Route component = {ProgilePage} exact path = '/admin/myProfile'/>
+                <Route component = {RegistrationPage} exact path = '/admin/registration'/>
                 </Switch>
             {/* </ThemeProvider> */}
         </Fragment>

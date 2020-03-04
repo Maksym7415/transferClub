@@ -8,7 +8,7 @@ const store = createStore(
   reducers,
   applyMiddleware(thunk),
 );
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 if (localStorage.authToken) store.dispatch(actionToken(localStorage.authToken, 'token'));
 
 

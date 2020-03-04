@@ -7,8 +7,8 @@ export default (state = {}, {
     case types.REQUEST: {
       return {
         ...state,
+        isFetching: true,
         [name]: {
-          isFetching: true,
           payload: undefined,
         },
       };
@@ -17,9 +17,9 @@ export default (state = {}, {
       if (name === 'auth') localStorage.authToken = payload.token;
       return {
         ...state,
+        isFetching: false,
         [name]: {
           payload,
-          isFetching: false,
         },
 
       };
@@ -27,9 +27,9 @@ export default (state = {}, {
     case types.REQUEST_FAIL: {
       return {
         ...state,
+        isFetching: false,
         [name]: {
           err,
-          isFetching: false,
         },
       };
     }

@@ -166,19 +166,19 @@ const Header = (props) => {
           </IconButton>
         </div>
         <Divider/>
-        <ListItem button component = {Link} to = '/'>
+        <ListItem button component = {Link} to = '/admin'>
           <ListItemIcon>
             <Home />
           </ListItemIcon>
           <ListItemText primary="Home Page" />
         </ListItem>
-        <ListItem button component = {Link} to = 'myProfile'>
+        <ListItem button component = {Link} to = '/admin/myProfile'>
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
           <ListItemText primary="My Profile" />
         </ListItem>
-        <ListItem button component = {Link} to = 'registration'>
+        <ListItem button component = {Link} to = '/admin/registration'>
           <ListItemIcon>
             <HowToReg />
           </ListItemIcon>

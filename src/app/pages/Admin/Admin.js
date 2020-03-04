@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -24,8 +24,14 @@ import Box from '@material-ui/core/Box';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import MaterialTable from 'material-table';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import Header from './header';
 import useStyles from '../../theme/styleTheme';
+
+import { getAllOrdersAction } from '../../redux/actions/getAllOrder';
+import { updatePartnerData } from '../../redux/actions/updatePartnerInfo';
+import dive from '../../functions/dive';
 
 function TabPanel(props) {
   const {
@@ -64,6 +70,39 @@ function AdminPage(props) {
   const classes = useStyles()();
   const [value, setValue] = React.useState(0);
   const theme = useTheme();
+  const [state, setState] = React.useState({
+    columns: [
+      {
+        title: 'Name',
+        field: 'name',
+      },
+      {
+        title: 'Email',
+        field: 'Email',
+      },
+      {
+        title: 'Mobile Phone',
+        field: 'phone',
+      },
+      {
+        title: 'Country',
+        field: 'Country',
+      },
+      {
+        title: 'Transport Basing',
+        field: 'Transport',
+      },
+    ],
+    data: [
+      {
+        name: 'LTD PARIS', Email: '228@gmail.com', phone: 3806457951, Country: 'France', Transport: 'France',
+      },
+    ],
+  });
+
+  useEffect(() => {
+    props.getAllOrdersAction();
+  }, [props.upDateOrder]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -97,103 +136,63 @@ function AdminPage(props) {
       </AppBar>
 
         <TabPanel value={value} index={0} dir={theme.direction}>
-        <Grid item xs={12}>
-              <Paper className={classes.paper}>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Mobile Phone</TableCell>
-                    <TableCell>Email</TableCell>
-                    <TableCell>Transport Basing</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                <TableRow>
-                    <TableCell>LTD DECANE</TableCell>
-                    <TableCell>+380951478679</TableCell>
-                    <TableCell>228@gmail.com</TableCell>
-                    <TableCell>Bangladesh</TableCell>
-                    <IconButton >
-                      <Edit />
-                   </IconButton>
-                   <IconButton >
-                      <Block />
-                   </IconButton>
-                   <IconButton >
-                      <Delete />
-                   </IconButton>
-                  </TableRow>
-                </TableBody>
-              </Table>
-              </Paper>
-            </Grid>
+        {!props.isFetching ? <MaterialTable
+        localization={{
+          header: {
+            actions: '',
+          },
+        }}
+        options={{
+          search: false,
+          paging: false,
+          actionsColumnIndex: state.columns.length,
+          actionsColumnTitle: '',
+          rowStyle: {
+            backgroundColor: '#EEE',
+          },
+          headerStyle: {
+            backgroundColor: '#3f51b5',
+            color: '#FFF',
+          },
+        }}
+       title=""
+       style = {{ height: '0px' }}
+      columns={state.columns}
+      data={props.data}
+      actions={[
+        {
+          icon: 'block',
+          tooltip: 'Block',
+          onClick: (event, rowData) => {
+            // Do save operation
+            console.log(event, rowData);
+          },
+        },
+      ]}
+      editable={{
+        onRowUpdate: (newData, oldData) => new Promise((resolve) => {
+          resolve();
+          props.updatePartnerData(newData);
+        }),
+        onRowDelete: (oldData) => new Promise((resolve) => {
+          console.log(1);
+          if (!false) resolve();
+          // resolve();
+
+          // setState((prevState) => {
+          //   const data = [...prevState.data];
+          //   data.splice(data.indexOf(oldData), 1);
+          //   return { ...prevState, data };
+          // });
+        }),
+      }}
+    /> : <LinearProgress />}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <Grid item xs={12}>
-              <Paper className={classes.paper}>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Mobile Phone</TableCell>
-                    <TableCell>Email</TableCell>
-                    <TableCell>...</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                <TableRow>
-                    <TableCell>LTD DECANE</TableCell>
-                    <TableCell>+380951478679</TableCell>
-                    <TableCell>228@gmail.com</TableCell>
-                    <TableCell>Bangladesh</TableCell>
-                    <IconButton >
-                      <Edit />
-                   </IconButton>
-                   <IconButton >
-                      <Block />
-                   </IconButton>
-                   <IconButton >
-                      <Delete />
-                   </IconButton>
-                  </TableRow>
-                </TableBody>
-              </Table>
-              </Paper>
-            </Grid>
+
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-        <Grid item xs={12}>
-              <Paper className={classes.paper}>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Mobile Phone</TableCell>
-                    <TableCell>Email</TableCell>
-                    <TableCell>...</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                <TableRow>
-                    <TableCell>LTD DECANE</TableCell>
-                    <TableCell>+380951478679</TableCell>
-                    <TableCell>228@gmail.com</TableCell>
-                    <TableCell>drtg</TableCell>
-                    <IconButton >
-                      <Edit />
-                   </IconButton>
-                   <IconButton >
-                      <Block />
-                   </IconButton>
-                   <IconButton >
-                      <Delete />
-                   </IconButton>
-                  </TableRow>
-                </TableBody>
-              </Table>
-              </Paper>
-            </Grid>
+
         </TabPanel>
         </Container>
       </main>
@@ -203,10 +202,14 @@ function AdminPage(props) {
 
 const mapStateToProps = (state) => ({
 
+  data: dive`${state}ordersStore.getOrders.payload`,
+  upDateOrder: dive`${state}ordersStore.upDateOrder.payload`,
+  isFetching: state.ordersStore.isFetching,
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-
+  getAllOrdersAction,
+  updatePartnerData,
 }, dispatch);
 
 export default AdminPage = connect(
