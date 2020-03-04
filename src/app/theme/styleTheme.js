@@ -101,4 +101,3 @@ export default () => makeStyles((theme) => ({
     flexDirection: 'column',
   },
 }));
-export default useStyles;
