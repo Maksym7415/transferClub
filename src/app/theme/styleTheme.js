@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
-export default makeStyles((theme) => ({
+const useStyles = () => makeStyles((theme) => ({
   root: {
     display: 'flex',
     // maxWidth: '1200px',
@@ -70,6 +70,7 @@ export default makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+    maxWidth: '100vw',
   },
   paper: {
     padding: theme.spacing(2),
@@ -80,8 +81,22 @@ export default makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-  wrapper: {
-    maxWidth: '1200px',
+  profilePaper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
 
   },
+  grid: {
+    flexGrow: 1,
+  },
+  profilePaperRegistr: {
+    marginTop: theme.spacing(2),
+    padding: theme.spacing(1),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+  },
 }));
+export default useStyles;
