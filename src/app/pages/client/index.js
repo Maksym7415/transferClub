@@ -5,7 +5,6 @@ import useStyles from './styles';
 import MakeOrder from './makeOrder';
 import Header from './header';
 
-
 const ClientPage = (props) => {
   const classes = useStyles()();
 
@@ -15,6 +14,7 @@ const ClientPage = (props) => {
       <Header />
       <main className={classes.content}>
         <MakeOrder />
+        {/* <Map /> */}
       </main>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Input from '@material-ui/core/Input';
 import Container from '@material-ui/core/Container';
@@ -7,41 +7,31 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import SwipeableViews from 'react-swipeable-views';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import { Autocomplete, useGoogleMap } from '@react-google-maps/api';
+import { TabPanel, a11yProps } from '../components/tabPanel';
 import useStyles from '../styles';
+import MapLoader from '../../../components/map/loader';
+import Map from '../../../components/map/map';
+import AutoComplete from './autoComplete';
+import MapMarker from '../../../components/map/mapMarker';
+import Directions from '../../../components/map/directions';
 
-
-const TabPanel = (props) => {
-  const {
-    children, value, index, ...other
-  } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-};
-
-const a11yProps = (index) => ({
-  id: `full-width-tab-${index}`,
-  'aria-controls': `full-width-tabpanel-${index}`,
-});
 
 const MakeOrder = (props) => {
+  let [autoComplete, setAutocomplete] = useState(null);
+
+  const handleOnLoad = (e) => setAutocomplete(autoComplete = e);
+  const handlePlaceChanged = () => {
+    if (autoComplete !== null) {
+      console.log(autoComplete.getPlace());
+    }
+  };
+
   const classes = useStyles()();
   const [from, setFrom] = useState('');
   const [select, setSelect] = useState('Duration');
@@ -59,9 +49,9 @@ const MakeOrder = (props) => {
   const handleTo = (e) => setTo(e.target.value);
 
   return (
-    <div>
-      <Container maxWidth="lg" className={classes.container}>
-        <Grid className={classes.centerContainer} container spacing={3}>
+    <div className={classes.container}>
+    {/* <Map marker={<MapMarker />} direction={<Directions />}> */}
+      <Container className={classes.searchFormContainer} maxWidth="lg" >
           <AppBar position="static" color="default">
             <Tabs
               value={tabs}
@@ -83,17 +73,17 @@ const MakeOrder = (props) => {
             <TabPanel className={classes.tabPanel} value={tabs} index={0} >
               <Paper className={classes.paper}>
                 <NavigationIcon />
-                <Input fullWidth={true} value={from} onChange={handleFrom} disableUnderline={true} placeholder='From'/>
+                <AutoComplete fullWidth={true} value={from} onChange={handleFrom} underline={true} placeholder='From' />
               </Paper>
               <Paper className={classes.paper}>
                 <NavigationIcon />
-                <Input fullWidth={true} value={to} onChange={handleTo} disableUnderline={true} placeholder='To'/>
+                <AutoComplete fullWidth={true} value={to} onChange={handleTo} underline={true} placeholder='To' />
               </Paper>
             </TabPanel>
             <TabPanel className={classes.tabPanel} value={tabs} index={1} >
               <Paper className={classes.paper}>
                 <NavigationIcon />
-                <Input fullWidth={true} value={from} onChange={handleFrom} disableUnderline={true} placeholder='From'/>
+                <AutoComplete fullWidth={true} value={from} onChange={handleFrom} underline={true} placeholder='From' />
               </Paper>
               <Paper className={classes.paper}>
               <FormControl variant="filled" className={classes.formControl}>
@@ -104,8 +94,8 @@ const MakeOrder = (props) => {
                   value={select}
                   onChange={handleChangeSelect}
                 >
-                  <option value=''>Duration</option>
-                  <option value='1hour'>1hour</option>
+                  <option value='en'>Duration</option>
+                  <option value='1hour'>kjdfd</option>
                   <option value='2hours'>2hours</option>
                   <option value='3hours'>3hours</option>
                 </NativeSelect>
@@ -116,8 +106,10 @@ const MakeOrder = (props) => {
           <Button className={classes.getOffers} variant="contained" color="secondary">
               Get offers
             </Button>
-        </Grid>
+
       </Container>
+      <Map />
+
     </div>
   );
 };

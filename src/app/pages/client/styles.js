@@ -71,13 +71,17 @@ export default () => makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    height: '100%',
-    width: '40%',
-  },
-  centerContainer: {
+    width: '100%',
     display: 'flex',
+    flexDirection: 'row',
     marginTop: '50px',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+  },
+  searchFormContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '40%',
+    margin: '0',
   },
   paper: {
     padding: `0 ${theme.spacing(1)}`,
@@ -104,7 +108,7 @@ export default () => makeStyles((theme) => ({
     width: '100%',
   },
   getOffers: {
-    margin: '0 auto',
+    // margin: '0 auto',
   },
   formControl: {
     height: '100%',
