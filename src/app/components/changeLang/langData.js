@@ -1,6 +1,6 @@
 export default {
-  languages: {
-    Russian: 'ru',
-    English: 'en'
-  }
-}
+  changeLangButton: {
+    en: 'Language',
+    ru: 'Язык',
+  },
+};

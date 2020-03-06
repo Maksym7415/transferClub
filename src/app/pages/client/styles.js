@@ -65,16 +65,16 @@ export default () => makeStyles((theme) => ({
   // appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: '100vh',
     overflow: 'auto',
+    marginTop: '100px',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: '100px',
     paddingBottom: theme.spacing(4),
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '50px',
+    // marginTop: '50px',
     justifyContent: 'space-around',
   },
   searchFormContainer: {
@@ -99,14 +99,14 @@ export default () => makeStyles((theme) => ({
   wrapper: {
     maxWidth: '1200px',
   },
-  tabPanelContainer: {
-    width: '100%',
-    backgroundColor: 'white',
-    opacity: '0.5',
-  },
-  tabPanel: {
-    width: '100%',
-  },
+  // tabPanelContainer: {
+  //   width: '100%',
+  //   backgroundColor: 'white',
+  //   opacity: '0.5',
+  // },
+  // tabPanel: {
+  //   width: '100%',
+  // },
   getOffers: {
     // margin: '0 auto',
   },
@@ -114,10 +114,10 @@ export default () => makeStyles((theme) => ({
     height: '100%',
     width: '100%',
   },
-  select: {
-    height: '100%',
-    paddingLeft: theme.spacing(1),
-  },
+  // select: {
+  //   height: '100%',
+  //   paddingLeft: theme.spacing(1),
+  // },
   orders: {
     width: '50%',
     flexGrow: 1,

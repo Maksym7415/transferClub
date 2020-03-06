@@ -8,17 +8,18 @@ const AutoComplete = (props) => {
 
   const handleOnLoad = (e) => setAutocomplete(autoComplete = e);
   const handlePlaceChanged = () => {
+    console.log('com');
     if (autoComplete !== null) {
-      console.log(autoComplete.getPlace().geometry.location.lat());
+      console.log(autoComplete.getPlace());
     }
   };
 
   return (
     <Autocomplete
-            onLoad={props.handleOnLoad}
-            onPlaceChanged={handlePlaceChanged}
-          >
-         <Input fullWidth={props.fullWidth} value={props.value} onChange={props.onChange} disableUnderline={props.underline} placeholder={props.placeolder}/>
+      onLoad={handleOnLoad}
+      onPlaceChanged={handlePlaceChanged}
+    >
+      <Input fullWidth={props.fullWidth} value={props.value} onChange={props.onChange} disableUnderline={props.underline} placeholder={props.placeolder}/>
     </Autocomplete>
   );
 };

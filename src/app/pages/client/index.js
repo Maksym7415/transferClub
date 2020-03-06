@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useStyles from './styles';
-import MakeOrder from './makeOrder';
-import Header from './header';
+import MakeOrder from '../makeOrder';
+import Header from '../header';
+import OrderForm from '../../components/orderForm';
 
 const ClientPage = (props) => {
   const classes = useStyles()();
@@ -11,9 +12,9 @@ const ClientPage = (props) => {
   return (
     <div className={classes.client}>
       <CssBaseline />
-      <Header />
+      {/* <Header /> */}
       <main className={classes.content}>
-        <MakeOrder />
+        <OrderForm />
         {/* <Map /> */}
       </main>
     </div>

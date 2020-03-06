@@ -2,25 +2,31 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import langData from './langData'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router';
+import history from '../../routing/history';
+import langData from './langData';
 
-export default function SimpleMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [lang, setLang] = useState('ru')
+const LangMenu = (props) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [lang, setLang] = useState('ru');
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (lang) => {
+    setLang(lang);
+    const ln = history.location.pathname.split('/');
+    ln[1] = lang;
+    history.push(ln.join('/'));
     setAnchorEl(null);
   };
 
   return (
     <div>
+    {/* {console.log(history)} */}
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        Open Menu
+        {langData.changeLangButton[lang]}
       </Button>
       <Menu
         id="simple-menu"
@@ -29,9 +35,11 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem component={Link} to='/en' onClick={handleClose}>Russian</MenuItem>
-        <MenuItem onClick={handleClose}>English</MenuItem>
+        <MenuItem onClick={() => handleClose('ru')}>Russian</MenuItem>
+        <MenuItem onClick={() => handleClose('en')}>English</MenuItem>
       </Menu>
     </div>
   );
-}
+};
+
+export default withRouter(LangMenu);

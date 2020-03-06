@@ -1,0 +1,8 @@
+.form-cars > div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.form-cars > div:first-child {
+    padding-right: 10px;
+}

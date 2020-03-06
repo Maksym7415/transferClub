@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import clsx from 'clsx';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
@@ -19,7 +21,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Input from '@material-ui/core/Input';
 import PaymentIcon from '@material-ui/icons/Payment';
-import useStyles from '../styles';
+import useStyles from '../client/styles';
+import LangMenu from '../../components/changeLang';
 
 
 const Header = (props) => {
@@ -32,7 +35,6 @@ const Header = (props) => {
   const handleDrawerClose = () => {
     setOpen(!false);
   };
-  // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <>
@@ -42,7 +44,7 @@ const Header = (props) => {
               edge="start"
               color="inherit"
               aria-label="open drawer"
-              onClick={handleDrawerOpen}
+              // onClick={handleDrawerOpen}
               className={clsx(classes.menuButton, !open && classes.menuButtonHidden)}
             >
               <MenuIcon />
@@ -50,14 +52,10 @@ const Header = (props) => {
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Client name
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <LangMenu />
           </Toolbar>
         </AppBar>
-        <Drawer
+        {/* <Drawer
           variant="permanent"
           classes={{
             paper: clsx(classes.drawerPaper, open && classes.drawerPaperClose),
@@ -98,9 +96,9 @@ const Header = (props) => {
             </ListItemIcon>
             <ListItemText primary="Statistics" />
           </ListItem>
-        </Drawer>
+        </Drawer> */}
     </>
   );
 };
 
-export default Header;
+export default withRouter(Header);
