@@ -5,6 +5,7 @@ import useStyles from '../../pages/client/styles';
 import SimpleForm from './simpleForm';
 import IntermediateForm from './intermediateForm';
 import ExtendedForm from './extendedForm';
+import PriceOffer from './priceOffer';
 
 
 const OrderForm = (props) => {
@@ -13,6 +14,7 @@ const OrderForm = (props) => {
   return (
       <Container className={classes.searchFormContainer} maxWidth="lg" >
             <SimpleForm />
+            <PriceOffer />
             <IntermediateForm/>
             <ExtendedForm />
           <Button className={classes.getOffers} variant="contained" color="secondary">

@@ -6,3 +6,7 @@
 .form-cars > div:first-child {
     padding-right: 10px;
 }
+.adultsQuantity button {
+    margin: 0 10px;
+    border-radius: 100px;
+}
