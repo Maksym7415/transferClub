@@ -5,8 +5,8 @@ import Map from './map';
 
 const Directions = (props) => {
   const [response, setResponse] = useState(null);
-  const [origin, setOrigin] = useState('Brooklyn');
-  const [destination, setDestination] = useState('Queens');
+  const [origin, setOrigin] = useState('Amsterdam');
+  const [destination, setDestination] = useState('Berlin');
   const [travelMode, setTravelMode] = useState('TRANSIT');
 
   const directionsCallback = (res) => {

@@ -8,17 +8,13 @@ export default (state = {}, { data, type, name }) => {
         const token = jwt_decode(data);
         return {
           ...state,
-          [name]: {
-            token,
-          },
+          [name]: token,
         };
       }
 
       return {
         ...state,
-        [name]: {
-          data,
-        },
+        [name]: data,
       };
     }
     case types.LOGOUT: {

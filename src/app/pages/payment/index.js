@@ -8,7 +8,7 @@ import useStyle from './styles';
 const Pay = (props) => {
   const classes = useStyle()();
   const [order] = useState('order');
-  const [orderId] = useState('orderDemo51');
+  const [orderId] = useState('orderDemo56');
   const [currency] = useState('USD');
   const [amount, setAmount] = useState('100');
   const [merchantId] = useState('1440784');

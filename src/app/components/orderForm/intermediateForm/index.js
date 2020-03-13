@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Card from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
-
-import useStyles from './styles';
+import useStyles from '../styles';
 
 const IntermediateForm = (props) => {
   const classes = useStyles()();

@@ -10,9 +10,11 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Input from '@material-ui/core/Input';
-import { TabPanel, a11yProps } from './tabPanel';
-import useStyles from './styles';
-import AutoComplete from '../map/autoComplete';
+import { withRouter } from 'react-router';
+import { TabPanel, a11yProps } from '../tabPanel';
+import useStyles from '../styles';
+import AutoComplete from '../../map/autoComplete';
+import langData from './langData';
 
 const SimpleForm = (props) => {
   const classes = useStyles()();
@@ -20,6 +22,7 @@ const SimpleForm = (props) => {
   const [select, setSelect] = useState('Duration');
   const [to, setTo] = useState('');
   const [tabs, setTabs] = useState(0);
+  const [lang, setLang] = useState(props.history.location.pathname.split('/')[1]);
 
   const handleChangeTabs = (event, newValue) => setTabs(newValue);
   const handleChangeIndex = (index) => setTabs(index);
@@ -27,19 +30,23 @@ const SimpleForm = (props) => {
   const handleFrom = (e) => setFrom(e.target.value);
   const handleTo = (e) => setTo(e.target.value);
 
+  useEffect(() => {
+    setLang(props.history.location.pathname.split('/')[1]);
+  }, [props.history.location]);
+
   return (
     <>
-      <AppBar position="static" color="default">
+      <AppBar position='static' color='default'>
         <Tabs
           value={tabs}
           onChange={handleChangeTabs}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+          indicatorColor='primary'
+          textColor='primary'
+          variant='fullWidth'
+          aria-label='full width tabs example'
         >
-          <Tab label="Transfer" {...a11yProps(0)} />
-          <Tab label="Per hour rent" {...a11yProps(1)} />
+          <Tab label={langData.route[lang]} {...a11yProps(0)} />
+          <Tab label={langData.perHourRent[lang]} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -50,20 +57,20 @@ const SimpleForm = (props) => {
         <TabPanel className={classes.tabPanel} value={tabs} index={0} >
           <Paper className={classes.paper}>
             <NavigationIcon />
-            <AutoComplete fullWidth={true} value={from} onChange={handleFrom} underline={true} placeholder='From' />
+            <AutoComplete fullWidth={true} value={from} onChange={handleFrom} underline={true} placeholder={langData.from[lang]} />
           </Paper>
           <Paper className={classes.paper}>
             <NavigationIcon />
-            <AutoComplete fullWidth={true} value={to} onChange={handleTo} underline={true} placeholder='To' />
+            <AutoComplete fullWidth={true} value={to} onChange={handleTo} underline={true} placeholder={langData.to[lang]} />
           </Paper>
         </TabPanel>
         <TabPanel className={classes.tabPanel} value={tabs} index={1} >
           <Paper className={classes.paper}>
             <NavigationIcon />
-            <AutoComplete fullWidth={true} value={from} onChange={handleFrom} underline={true} placeholder='From' />
+            <AutoComplete fullWidth={true} value={from} onChange={handleFrom} underline={true} placeholder={langData.from[lang]} />
           </Paper>
           <Paper className={classes.paper}>
-            <FormControl variant="filled" className={classes.formControl}>
+            <FormControl variant='filled' className={classes.formControl}>
               <NativeSelect
                 native='true'
                 className={classes.select}
@@ -72,10 +79,10 @@ const SimpleForm = (props) => {
                 onChange={handleChangeSelect}
                 disableUnderline={true}
               >
-                <option value='en'>Duration</option>
-                <option value='1hour'>kjdfd</option>
-                <option value='2hours'>2hours</option>
-                <option value='3hours'>3hours</option>
+                <option value='en'>{langData.duration[lang]}</option>
+                <option value='1hour'>1{langData.hour[lang]}</option>
+                <option value='2hours'>2{langData.hours[lang]}</option>
+                <option value='3hours'>3{langData.hours[lang]}</option>
               </NativeSelect>
             </FormControl>
           </Paper>
@@ -85,4 +92,4 @@ const SimpleForm = (props) => {
   );
 };
 
-export default SimpleForm;
+export default withRouter(SimpleForm);

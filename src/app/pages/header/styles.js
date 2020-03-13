@@ -1,12 +1,10 @@
-
 import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
 export default () => makeStyles((theme) => ({
-  client: {
+  root: {
     display: 'flex',
-    // maxWidth: '1200px',
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -14,7 +12,7 @@ export default () => makeStyles((theme) => ({
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
@@ -62,81 +60,23 @@ export default () => makeStyles((theme) => ({
       width: theme.spacing(9),
     },
   },
-  // appBarSpacer: theme.mixins.toolbar,
+  appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
+    height: '100vh',
     overflow: 'auto',
-    marginTop: '100px',
   },
   container: {
-    paddingTop: '100px',
+    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    // marginTop: '50px',
-    justifyContent: 'space-around',
-  },
-  searchFormContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '40%',
-    margin: '0',
   },
   paper: {
-    padding: `0 ${theme.spacing(1)}`,
+    padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
-    marginBottom: theme.spacing(1),
-    alignItems: 'center',
-    width: '100%',
-    border: '1px solid grey',
-    height: '40px',
+    flexDirection: 'column',
   },
   fixedHeight: {
     height: 240,
-  },
-  wrapper: {
-    maxWidth: '1200px',
-  },
-  // tabPanelContainer: {
-  //   width: '100%',
-  //   backgroundColor: 'white',
-  //   opacity: '0.5',
-  // },
-  // tabPanel: {
-  //   width: '100%',
-  // },
-  getOffers: {
-    // margin: '0 auto',
-  },
-  formControl: {
-    height: '100%',
-    width: '100%',
-  },
-  // select: {
-  //   height: '100%',
-  //   paddingLeft: theme.spacing(1),
-  // },
-  orders: {
-    width: '50%',
-    flexGrow: 1,
-
-  },
-  orderItem: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: theme.spacing(2),
-    fontFamily: 'Roboto',
-  },
-  orderItemContainer: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  orderHeader: {
-    marginTop: '100px',
-    marginLeft: '20%',
   },
 }));

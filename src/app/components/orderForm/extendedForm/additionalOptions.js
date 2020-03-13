@@ -6,8 +6,8 @@ import Grow from '@material-ui/core/Grow';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Input from '@material-ui/core/Input';
 import Icon from '@material-ui/core/Icon';
-import useStyles from './styles';
-import PriceOffer from './priceOffer';
+import useStyles from '../styles';
+import PriceOffer from '../intermediateForm/priceOffer';
 
 const AdditionalOptions = (props) => {
   const classes = useStyles()();
@@ -95,7 +95,7 @@ const AdditionalOptions = (props) => {
             <div>
               <FormControlLabel
                 control={<Checkbox name='promoCode' onChange={handleChangeCheckbox} checked={checked.promoCode || false} />}
-                label='Meeting with a name sign is required'
+                label='Promocode'
               />
                 <div>
                   <Grow

@@ -19,7 +19,7 @@ const AutoComplete = (props) => {
       onLoad={handleOnLoad}
       onPlaceChanged={handlePlaceChanged}
     >
-      <Input fullWidth={props.fullWidth} value={props.value} onChange={props.onChange} disableUnderline={props.underline} placeholder={props.placeolder}/>
+      <Input fullWidth={props.fullWidth} value={props.value} onChange={props.onChange} disableUnderline={props.underline} placeholder={props.placeholder}/>
     </Autocomplete>
   );
 };

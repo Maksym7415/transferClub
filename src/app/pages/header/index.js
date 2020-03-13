@@ -21,7 +21,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Input from '@material-ui/core/Input';
 import PaymentIcon from '@material-ui/icons/Payment';
-import useStyles from '../client/styles';
+import useStyles from './styles';
 import LangMenu from '../../components/changeLang';
 
 
@@ -51,7 +51,7 @@ const Header = (props) => {
               <MenuIcon />
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Client name
+            Transfer Club
             </Typography>
             <LangMenu />
           </Toolbar>

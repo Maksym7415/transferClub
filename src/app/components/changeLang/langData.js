@@ -1,6 +1,6 @@
 export default {
-  changeLangButton: {
-    en: 'Language',
-    ru: 'Язык',
+  iconPath: {
+    en: '/images/england.svg',
+    ru: '/images/russia.svg',
   },
 };

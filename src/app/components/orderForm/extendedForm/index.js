@@ -20,7 +20,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Grow from '@material-ui/core/Grow';
-import useStyle from './styles';
+import useStyle from '../styles';
 import AdditionalOptions from './additionalOptions';
 import Comment from './comment';
 import Contacts from './contacts';

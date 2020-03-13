@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import useStyles from '../../pages/client/styles';
+import useStyles from './styles';
 import SimpleForm from './simpleForm';
 import IntermediateForm from './intermediateForm';
 import ExtendedForm from './extendedForm';
-import PriceOffer from './priceOffer';
+import PriceOffer from './intermediateForm/priceOffer';
 
 
 const OrderForm = (props) => {

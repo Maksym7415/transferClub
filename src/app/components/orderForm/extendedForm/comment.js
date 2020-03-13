@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-import useStyle from './styles';
+import useStyle from '../styles';
 
 const Comment = (props) => {
   const classes = useStyle()();
