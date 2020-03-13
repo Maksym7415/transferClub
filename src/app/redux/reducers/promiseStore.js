@@ -8,9 +8,7 @@ export default (state = {}, {
       return {
         ...state,
         isFetching: true,
-        [name]: {
-          payload: undefined,
-        },
+        [name]: undefined,
       };
     }
     case types.REQUEST_SUCCESS: {
@@ -18,9 +16,7 @@ export default (state = {}, {
       return {
         ...state,
         isFetching: false,
-        [name]: {
-          payload,
-        },
+        [name]: payload,
 
       };
     }
@@ -28,9 +24,7 @@ export default (state = {}, {
       return {
         ...state,
         isFetching: false,
-        [name]: {
-          err,
-        },
+        [name]: err,
       };
     }
     case types.DELETE_DATA: {

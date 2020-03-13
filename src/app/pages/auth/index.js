@@ -8,39 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import SignIn from './login';
 import SignUp from './register';
+import { TabPanel, allyProps } from '../../components/orderForm/tabPanel';
+import { useStyles } from './styles';
 
-function TabPanel(props) {
-  const {
-    children, value, index, ...other
-  } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
-
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500,
-  },
-}));
 
 const Authorization = (props) => {
   const classes = useStyles();
@@ -56,11 +26,10 @@ const Authorization = (props) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.container}>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
-        // onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <SignIn onClick={() => handleChangeIndex(1)} />

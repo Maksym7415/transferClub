@@ -22,6 +22,7 @@ export default () => makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     cursor: 'pointer',
+    boxShadow: 'none',
   },
   langIcon: {
     width: '30px',

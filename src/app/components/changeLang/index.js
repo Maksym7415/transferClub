@@ -16,7 +16,6 @@ import Paper from '@material-ui/core/Paper';
 import langData from './langData';
 import history from '../../routing/history';
 import useStyles from './styles';
-import actionLanguage from '../../redux/actions/actionLanguage';
 
 const LangMenu = (props) => {
   const [openLang, setOpenLang] = useState(false);
@@ -63,20 +62,6 @@ const LangMenu = (props) => {
         </List>
       </Collapse>
     </List>
-    {/* {console.log(history)} */}
-      {/* <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        {langData.changeLangButton[lang]}
-      </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={() => handleClose('ru')}>Russian</MenuItem>
-        <MenuItem onClick={() => handleClose('en')}>English</MenuItem>
-      </Menu> */}
     </div>
   );
 };

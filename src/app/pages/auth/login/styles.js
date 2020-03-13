@@ -2,8 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   container: {
-    position: 'relative',
-    paddingTop: '100px',
+    // position: 'relative',
+    // paddingTop: '100px',
+    width: '100%',
+    height: '100%',
   },
   paper: {
     marginTop: theme.spacing(8),

@@ -17,16 +17,19 @@ function Router(props) {
   return (
         <Fragment>
           <MapLoader>
-            <Header/>
-            <Switch>
-              <Redirect exact from='/' to='/ru' />
-              <Route component = {Public} exact path = '/:lang'/>
-              <Route component = {Authorization} exact path = '/:lang/auth'/>
-              <Route component = {SignIn} exact path = '/:lang/login'/>
-              <Route component = {SignUp} exact path = '/:lang/register'/>
-              <Route component = {MakeOrder} exact path = '/:lang/order' />
-              <Route component = {Pay} exact path = '/:lang/pay'/>
-            </Switch>
+            <div className='drawer-content-container'>
+              <Header/>
+              <Switch>
+                <Redirect exact from='/' to='/ru' />
+                <Route component = {Public} exact path = '/:lang'/>
+                <Route component = {Authorization} exact path = '/:lang/auth'/>
+                <Route component = {SignIn} exact path = '/:lang/login'/>
+                <Route component = {SignUp} exact path = '/:lang/register'/>
+                <Route component = {MakeOrder} exact path = '/:lang/order' />
+                <Route component = {Pay} exact path = '/:lang/pay'/>
+                <Route component = {() => <div>not found</div>} />
+              </Switch>
+            </div>
           </MapLoader>
         </Fragment>
   );
