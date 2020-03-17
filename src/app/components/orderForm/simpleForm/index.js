@@ -19,36 +19,10 @@ import langData from './langData';
 const SimpleForm = (props) => {
   const classes = useStyles()();
   const [lang, setLang] = useState(props.history.location.pathname.split('/')[1]);
-  // const [from, setFrom] = useState('');
-  // const [select, setSelect] = useState('Duration');
-  // const [to, setTo] = useState('');
-  // const [tabs, setTabs] = useState(0);
-  // const [autoCompleteFrom, setAutocompleteFrom] = useState(null);
-  // const [autoCompleteTo, setAutocompleteTo] = useState(null);
-  // const [isShowCars, setIsShowCars] = useState({
-  //   from: false,
-  //   to: false,
-  // });
+  const [tabs, setTabs] = useState(0);
 
-  // const handleOnLoadAutocompliteFrom = (e) => setAutocompleteFrom(e);
-  // const handleOnLoadAutocompliteTo = (e) => setAutocompleteTo(e);
-  // const handlePlaceChangedFrom = () => {
-  //   if (autoCompleteFrom !== null) {
-  //     setFrom(autoCompleteFrom.getPlace().formatted_address);
-  //     setIsShowCars((prev) => ({ ...prev, from: true }));
-  //   }
-  // };
-  // const handlePlaceChangedTo = () => {
-  //   if (autoCompleteTo !== null) {
-  //     setTo(autoCompleteTo.getPlace().formatted_address);
-  //     setIsShowCars((prev) => ({ ...prev, to: true }));
-  //   }
-  // };
-  // const handleChangeTabs = (event, newValue) => setTabs(newValue);
-  // const handleChangeIndex = (index) => setTabs(index);
-  // const handleChangeSelect = (e) => setSelect(e.target.value);
-  // const handleFrom = (e) => setFrom(e.target.value);
-  // const handleTo = (e) => setTo(e.target.value);
+  const handleChangeTabs = (event, newValue) => setTabs(newValue);
+  const handleChangeIndex = (index) => setTabs(index);
 
   useEffect(() => {
     setLang(props.history.location.pathname.split('/')[1]);
@@ -78,19 +52,19 @@ const SimpleForm = (props) => {
           <Paper className={classes.paper}>
             <NavigationIcon />
             <Autocomplete
-              onLoad={handleOnLoadAutocompliteFrom}
-              onPlaceChanged={handlePlaceChangedFrom}
+              onLoad={props.handleOnLoadAutocompliteFrom}
+              onPlaceChanged={props.handlePlaceChangedFrom}
             >
-              <Input fullWidth={true} value={from} onChange={handleFrom} disableUnderline={true} placeholder={langData.from[lang]}/>
+              <Input fullWidth={true} value={props.from} onChange={props.handleFrom} disableUnderline={true} placeholder={langData.from[lang]}/>
             </Autocomplete>
           </Paper>
           <Paper className={classes.paper}>
             <NavigationIcon />
             <Autocomplete
-              onLoad={handleOnLoadAutocompliteTo}
-              onPlaceChanged={handlePlaceChangedTo}
+              onLoad={props.handleOnLoadAutocompliteTo}
+              onPlaceChanged={props.handlePlaceChangedTo}
             >
-              <Input fullWidth={true} value={to} onChange={handleTo} disableUnderline={true} placeholder={langData.to[lang]}/>
+              <Input fullWidth={true} value={props.to} onChange={props.handleTo} disableUnderline={true} placeholder={langData.to[lang]}/>
             </Autocomplete>
           </Paper>
         </TabPanel>
@@ -98,10 +72,10 @@ const SimpleForm = (props) => {
           <Paper className={classes.paper}>
             <NavigationIcon />
             <Autocomplete
-              onLoad={handleOnLoadAutocompliteFrom}
-              onPlaceChanged={handlePlaceChangedFrom}
+              onLoad={props.handleOnLoadAutocompliteFrom}
+              onPlaceChanged={props.handlePlaceChangedFrom}
             >
-              <Input fullWidth={true} value={from} onChange={handleFrom} disableUnderline={true} placeholder={langData.from[lang]}/>
+              <Input fullWidth={true} value={props.from} onChange={props.handleFrom} disableUnderline={true} placeholder={langData.from[lang]}/>
             </Autocomplete>
           </Paper>
           <Paper className={classes.paper}>
@@ -110,8 +84,8 @@ const SimpleForm = (props) => {
                 native='true'
                 className={classes.select}
                 variant='filled'
-                value={select}
-                onChange={handleChangeSelect}
+                value={props.select}
+                onChange={props.handleChangeSelect}
                 disableUnderline={true}
               >
                 <option value='en'>{langData.duration[lang]}</option>

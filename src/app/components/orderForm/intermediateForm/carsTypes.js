@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import useStyles from '../styles';
 
-const IntermediateForm = (props) => {
+const CarsTypes = (props) => {
   const classes = useStyles()();
 
 
@@ -37,4 +37,4 @@ const IntermediateForm = (props) => {
   );
 };
 
-export default IntermediateForm;
+export default CarsTypes;

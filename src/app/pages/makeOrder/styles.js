@@ -5,5 +5,7 @@ export default () => makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     padding: '100px 20px 0 20px',
+    // flexWrap: 'wrap',
   },
+
 }));

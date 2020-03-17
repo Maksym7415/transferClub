@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import SimpleForm from './simpleForm';
-import IntermediateForm from './intermediateForm';
+import CarsTypes from './intermediateForm/carsTypes';
 import ExtendedForm from './extendedForm';
 import PriceOffer from './intermediateForm/priceOffer';
 
@@ -15,7 +15,7 @@ const OrderForm = (props) => {
       <Container className={classes.searchFormContainer} maxWidth="lg" >
             <SimpleForm />
             <PriceOffer />
-            <IntermediateForm/>
+            <CarsTypes />
             <ExtendedForm />
           <Button className={classes.getOffers} variant="contained" color="secondary">
               Get offers

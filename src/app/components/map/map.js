@@ -8,8 +8,8 @@ const Map = (props) => (
     {props.children}
     <GoogleMap
      mapContainerStyle={{
-       height: '600px',
-       width: '600px',
+       height: props.height,
+       width: props.width,
        position: 'relative',
      }}
       center={{

@@ -28,7 +28,7 @@ const PriceOffer = (props) => {
             <option value='euro'>EU</option>
             <option value='Usd'>USD</option>
           </NativeSelect>
-          <Input fullWidth={true} value={price} onChange={handlePrice} disableUnderline={true} placeholder='Offer yuor price'/>
+          <Input fullWidth={true} value={price} onChange={handlePrice} disableUnderline={true} placeholder='Offer your price'/>
         </Paper>
       </Container>
     </>
