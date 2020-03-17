@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 
 export default (state = {}, {
-  type, payload, err, name,
+  type, payload, error, name,
 }) => {
   switch (type) {
     case types.REQUEST: {
@@ -16,22 +16,24 @@ export default (state = {}, {
       return {
         ...state,
         isFetching: false,
-        [name]: payload,
-
+        [name]: {
+          payload,
+        },
       };
     }
     case types.REQUEST_FAIL: {
       return {
         ...state,
         isFetching: false,
-        [name]: err,
+        [name]: {
+          error,
+        },
       };
     }
     case types.DELETE_DATA: {
       return {
         ...state,
-        [name]: {
-        },
+        [name]: undefined,
       };
     }
     default: return state;

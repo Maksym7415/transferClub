@@ -8,7 +8,6 @@ const AutoComplete = (props) => {
 
   const handleOnLoad = (e) => setAutocomplete(autoComplete = e);
   const handlePlaceChanged = () => {
-    console.log('com');
     if (autoComplete !== null) {
       console.log(autoComplete.getPlace());
     }

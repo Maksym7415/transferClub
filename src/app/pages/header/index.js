@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
@@ -16,6 +16,7 @@ import PublicDrawer from './publicDrawer/index.js';
 const Header = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
+  const [lang, setLang] = useState(props.history.location.pathname.split('/')[1]);
 
   const handleDrawerOpen = () => {
     setOpen(!true);
@@ -24,8 +25,15 @@ const Header = (props) => {
     setOpen(!false);
   };
 
+  const handleGoHome = () => props.history.push(`/${lang}`);
+
+  useEffect(() => {
+    setLang(props.history.location.pathname.split('/')[1]);
+  }, [props.history.location]);
+
   return (
     <div className={classes.root}>
+    {console.log(lang)}
       <CssBaseline/>
       <AppBar position="absolute" className={clsx(classes.appBar, !open && classes.appBarShift)} >
           <Toolbar className={classes.toolbar}>
@@ -38,13 +46,16 @@ const Header = (props) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Transfer Club
+            <Typography onClick={handleGoHome} component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              <span className={classes.logo}>
+                Transfer Club
+              </span>
+
             </Typography>
             <LangMenu />
           </Toolbar>
         </AppBar>
-        <PublicDrawer open={open} handleDrawerClose={handleDrawerClose} />
+        <PublicDrawer lang={lang} open={open} handleDrawerClose={handleDrawerClose} />
     </div>
   );
 };

@@ -11,24 +11,44 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Input from '@material-ui/core/Input';
 import { withRouter } from 'react-router';
+import { Autocomplete } from '@react-google-maps/api';
 import { TabPanel, a11yProps } from '../tabPanel';
 import useStyles from '../styles';
-import AutoComplete from '../../map/autoComplete';
 import langData from './langData';
 
 const SimpleForm = (props) => {
   const classes = useStyles()();
-  const [from, setFrom] = useState('');
-  const [select, setSelect] = useState('Duration');
-  const [to, setTo] = useState('');
-  const [tabs, setTabs] = useState(0);
   const [lang, setLang] = useState(props.history.location.pathname.split('/')[1]);
+  // const [from, setFrom] = useState('');
+  // const [select, setSelect] = useState('Duration');
+  // const [to, setTo] = useState('');
+  // const [tabs, setTabs] = useState(0);
+  // const [autoCompleteFrom, setAutocompleteFrom] = useState(null);
+  // const [autoCompleteTo, setAutocompleteTo] = useState(null);
+  // const [isShowCars, setIsShowCars] = useState({
+  //   from: false,
+  //   to: false,
+  // });
 
-  const handleChangeTabs = (event, newValue) => setTabs(newValue);
-  const handleChangeIndex = (index) => setTabs(index);
-  const handleChangeSelect = (e) => setSelect(e.target.value);
-  const handleFrom = (e) => setFrom(e.target.value);
-  const handleTo = (e) => setTo(e.target.value);
+  // const handleOnLoadAutocompliteFrom = (e) => setAutocompleteFrom(e);
+  // const handleOnLoadAutocompliteTo = (e) => setAutocompleteTo(e);
+  // const handlePlaceChangedFrom = () => {
+  //   if (autoCompleteFrom !== null) {
+  //     setFrom(autoCompleteFrom.getPlace().formatted_address);
+  //     setIsShowCars((prev) => ({ ...prev, from: true }));
+  //   }
+  // };
+  // const handlePlaceChangedTo = () => {
+  //   if (autoCompleteTo !== null) {
+  //     setTo(autoCompleteTo.getPlace().formatted_address);
+  //     setIsShowCars((prev) => ({ ...prev, to: true }));
+  //   }
+  // };
+  // const handleChangeTabs = (event, newValue) => setTabs(newValue);
+  // const handleChangeIndex = (index) => setTabs(index);
+  // const handleChangeSelect = (e) => setSelect(e.target.value);
+  // const handleFrom = (e) => setFrom(e.target.value);
+  // const handleTo = (e) => setTo(e.target.value);
 
   useEffect(() => {
     setLang(props.history.location.pathname.split('/')[1]);
@@ -57,17 +77,32 @@ const SimpleForm = (props) => {
         <TabPanel className={classes.tabPanel} value={tabs} index={0} >
           <Paper className={classes.paper}>
             <NavigationIcon />
-            <AutoComplete fullWidth={true} value={from} onChange={handleFrom} underline={true} placeholder={langData.from[lang]} />
+            <Autocomplete
+              onLoad={handleOnLoadAutocompliteFrom}
+              onPlaceChanged={handlePlaceChangedFrom}
+            >
+              <Input fullWidth={true} value={from} onChange={handleFrom} disableUnderline={true} placeholder={langData.from[lang]}/>
+            </Autocomplete>
           </Paper>
           <Paper className={classes.paper}>
             <NavigationIcon />
-            <AutoComplete fullWidth={true} value={to} onChange={handleTo} underline={true} placeholder={langData.to[lang]} />
+            <Autocomplete
+              onLoad={handleOnLoadAutocompliteTo}
+              onPlaceChanged={handlePlaceChangedTo}
+            >
+              <Input fullWidth={true} value={to} onChange={handleTo} disableUnderline={true} placeholder={langData.to[lang]}/>
+            </Autocomplete>
           </Paper>
         </TabPanel>
         <TabPanel className={classes.tabPanel} value={tabs} index={1} >
           <Paper className={classes.paper}>
             <NavigationIcon />
-            <AutoComplete fullWidth={true} value={from} onChange={handleFrom} underline={true} placeholder={langData.from[lang]} />
+            <Autocomplete
+              onLoad={handleOnLoadAutocompliteFrom}
+              onPlaceChanged={handlePlaceChangedFrom}
+            >
+              <Input fullWidth={true} value={from} onChange={handleFrom} disableUnderline={true} placeholder={langData.from[lang]}/>
+            </Autocomplete>
           </Paper>
           <Paper className={classes.paper}>
             <FormControl variant='filled' className={classes.formControl}>

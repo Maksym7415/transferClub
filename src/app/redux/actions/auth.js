@@ -1,14 +1,13 @@
-
 import action from '../constants/actionConstants';
 import actionToken from './actionToken';
+import myAxios from '../constants/myAxios';
 
-export const authsAction = (payload) => async (dispatch) => {
+export default (data) => async (dispatch) => {
   dispatch(action.Request('auth'));
   try {
-    const res = await fetch('http://localhost:3000/token');
-    const payload = await res.json();
-    dispatch(action.RequestSuccess(payload, 'auth')) && dispatch(actionToken(payload.token, 'token'));
+    const payload = await myAxios('/user/authorization', 'post', data);
+    dispatch(action.RequestSuccess('auth', payload)) && dispatch(actionToken(payload.token, 'token'));
   } catch (err) {
-    dispatch(action.RequestFail(err, 'auth'));
+    dispatch(action.RequestFail('auth', err));
   }
 };

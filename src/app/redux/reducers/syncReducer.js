@@ -21,9 +21,7 @@ export default (state = {}, { data, type, name }) => {
       localStorage.removeItem('authToken');
       return {
         ...state,
-        [name]: {
-
-        },
+        [name]: undefined,
       };
     }
     default: return state;

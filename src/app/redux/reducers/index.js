@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import promiseStore from './promiseStore';
+import promiseReducer from './promiseReducer';
 import syncReducer from './syncReducer';
 
 export default combineReducers({
-  promiseStore,
+  promiseReducer,
   syncReducer,
 });

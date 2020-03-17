@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,18 +7,52 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
 import { withRouter } from 'react-router';
+import PhoneInput from 'react-phone-input-2';
+import actionRegister from '../../../redux/actions/registration';
+import actionAuth from '../../../redux/actions/auth';
 import { useStyles } from './styles';
 import langData from './langData';
+import 'react-phone-input-2/lib/material.css';
+
 
 const SignUp = (props) => {
   const classes = useStyles();
   const [lang, setLang] = useState(props.history.location.pathname.split('/')[1]);
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const regData = useSelector((state) => state.promiseReducer.register);
+  const dispatch = useDispatch();
+
+  const changeName = (e) => setName(e.target.value);
+  const changeEmail = (e) => setEmail(e.target.value);
+  const changePassword = (e) => setPassword(e.target.value);
+  const changeConfirmPassword = (e) => setConfirmPassword(e.target.value);
+
+  const handleRegister = () => dispatch(actionRegister({
+    name, email, phone, password,
+  }));
+
+  useEffect(() => {
+    setLang(props.history.location.pathname.split('/')[1]);
+  }, [props.history.location]);
+
+  useEffect(() => {
+    if (regData && regData.payload) {
+      dispatch(actionAuth(password, email));
+    }
+    if (regData && regData.error) {
+      alert('fail');
+    }
+  }, [regData]);
 
   return (
     <Container className={classes.container} component="main" maxWidth="xs">
@@ -35,29 +69,21 @@ const SignUp = (props) => {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
+                onChange={changeName}
+                value={name}
                 name="firstName"
                 variant="outlined"
-                required
                 fullWidth
                 id="firstName"
-                label={langData.firstName[lang]}
+                label={langData.name[lang]}
                 autoFocus
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label={langData.lastName[lang]}
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
+                onChange={changeEmail}
+                value={email}
                 required
                 fullWidth
                 id="email"
@@ -67,15 +93,41 @@ const SignUp = (props) => {
               />
             </Grid>
             <Grid item xs={12}>
+              <FormControl className={`phone-input ${classes.phoneFormControl}`}>
+                <PhoneInput
+                  placeholder="Enter phone number"
+                  country="ua"
+                  value={phone}
+                  onChange={setPhone}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
+                onChange={changePassword}
+                value={password}
                 required
                 fullWidth
-                name="password"
-                label={langData.password[lang]}
-                type="password"
                 id="password"
-                autoComplete="current-password"
+                label={langData.password[lang]}
+                name="password"
+                // autoComplete="email"
+                type='password'
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                onChange={changeConfirmPassword}
+                value={confirmPassword}
+                required
+                fullWidth
+                name="confirmPassword"
+                label={langData.confirmPassword[lang]}
+                type="password"
+                id="comfirmPassword"
+                // autoComplete="current-password"
               />
             </Grid>
             <Grid item xs={12}>
@@ -86,7 +138,8 @@ const SignUp = (props) => {
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            type="button"
+            onClick={handleRegister}
             fullWidth
             variant="contained"
             color="primary"

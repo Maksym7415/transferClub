@@ -8,17 +8,17 @@ export default {
       name,
     };
   },
-  RequestSuccess(payload, name) {
+  RequestSuccess(name, payload) {
     return {
       type: types.REQUEST_SUCCESS,
       payload,
       name,
     };
   },
-  RequestFail(err, name) {
+  RequestFail(name, error) {
     return {
       type: types.REQUEST_FAIL,
-      err,
+      error,
       name,
     };
   },

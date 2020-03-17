@@ -1,5 +1,5 @@
 import action from '../constants/actionConstants';
-import { myAxios } from '../constants/myAxios';
+import myAxios from '../constants/myAxios';
 
 export const actionTestDocker = () => async (dispatch) => {
   dispatch(action.Request('testDocker'));

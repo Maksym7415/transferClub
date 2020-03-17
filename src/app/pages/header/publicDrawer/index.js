@@ -16,11 +16,7 @@ import langData from './langData';
 
 const PublicDrawer = (props) => {
   const classes = useStyles();
-  const [lang, setLang] = useState(props.history.location.pathname.split('/')[1]);
 
-  useEffect(() => {
-    setLang(props.history.location.pathname.split('/')[1]);
-  }, [props.history.location]);
 
   return (
     <Drawer
@@ -33,14 +29,14 @@ const PublicDrawer = (props) => {
           <div className={classes.toolbarIcon}>
             <div>
               <img />
-              <Link to={`/${lang}/auth`}>{langData.signIn[lang]}</Link>
+              <Link to={`/${props.lang}/auth`}>{langData.signIn[props.lang]}</Link>
             </div>
             <IconButton onClick={props.handleDrawerClose}>
               <ChevronLeftIcon />
             </IconButton>
           </div>
           <Divider/>
-          <ListItem button component={Link} to='/client'>
+          <ListItem button component={Link} to={`/${props.lang}/order`}>
             <ListItemIcon>
               <ShoppingCartIcon />
             </ListItemIcon>

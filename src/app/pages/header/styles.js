@@ -33,6 +33,9 @@ export const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  logo: {
+    cursor: 'pointer',
+  },
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',

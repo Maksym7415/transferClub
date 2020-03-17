@@ -3,8 +3,8 @@ export default {
     en: 'Sign Up',
     ru: 'Зарегестрируйтесь',
   },
-  firstName: {
-    en: 'First Name',
+  name: {
+    en: 'Name',
     ru: 'Имя',
   },
   lastName: {
@@ -18,6 +18,10 @@ export default {
   password: {
     en: 'Password',
     ru: 'Пароль',
+  },
+  confirmPassword: {
+    en: 'Confirm password',
+    ru: 'Подтвердите пароль',
   },
   checkbox: {
     en: 'I want to receive inspiration, marketing promotions and updates via email.',

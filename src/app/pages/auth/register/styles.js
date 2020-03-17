@@ -24,4 +24,10 @@ export const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  phoneFormControl: {
+    width: '100%',
+  },
+  phoneInput: {
+    width: '100%',
+  },
 }));

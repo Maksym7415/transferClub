@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const myAxios = (url, method, data) => axios({
+export default (url, method, data) => axios({
   method,
   url: `//localhost:8080/${url}`,
   headers: localStorage.authToken ? {
