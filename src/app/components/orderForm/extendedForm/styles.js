@@ -1,72 +1,31 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default () => makeStyles((theme) => ({
-  searchFormContainer: {
-    width: '40%',
-  },
-  tabPanelContainer: {
+export const useStyles = makeStyles((theme) => ({
+  transferDateContainer: {
     width: '100%',
-    backgroundColor: 'white',
-    opacity: '0.5',
-  },
-  tabPanel: {
-    width: '100%',
-  },
-  paper: {
-    padding: `0 ${theme.spacing(1)}`,
     display: 'flex',
-    overflow: 'auto',
-    marginBottom: theme.spacing(1),
-    alignItems: 'center',
-    width: '100%',
-    border: '1px solid grey',
-    height: '40px',
-  },
-  select: {
-    height: '100%',
-    paddingLeft: theme.spacing(1),
-  },
-  interMForm: {
-    display: 'flex',
-    flexDirection: 'row',
-    margin: '0 24px',
-    border: '1px solid grey',
-  },
-  selectCurr: {
-    width: '20%',
-    paddingLeft: '5px',
-  },
-  cars: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
+    flexDirection: 'column',
     padding: '0',
   },
-  carsCard: {
+  dataPickerContainer: {
     width: '100%',
-    height: '50px',
-    marginBottom: '10px',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paperPrice: {
-    display: 'flex',
-    overflow: 'auto',
-    marginBottom: theme.spacing(1),
-    alignItems: 'center',
-    width: '100%',
-    border: '1px solid grey',
-    height: '40px',
-  },
-  offerPrice: {
-    width: '100%',
+    flexDirection: 'row',
+    border: 'none',
+    backgroundColor: 'transparent',
+    borderRadius: '0',
+    boxShadow: '0 0 0',
+    justifyContent: 'flex-end',
     padding: '0',
   },
   returnWayContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
+    border: 'none',
+    backgroundColor: 'transparent',
+    borderRadius: '0',
+    boxShadow: '0 0 0',
   },
   adultsQuantity: {
     display: 'flex',
@@ -108,5 +67,26 @@ export default () => makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  carsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: '0',
+  },
+  carsContainerLabel: {
+    maxWidth: '30%',
+    // display: 'flex',
+    // justifyContent: 'flex-start',
+    padding: '0',
+  },
+  carsContainerList: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  carsListItem: {
+    border: 'none',
+    backgroundColor: 'transparent',
+    borderRadius: '0',
+    boxShadow: '0 0 0',
   },
 }));

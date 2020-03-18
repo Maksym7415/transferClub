@@ -6,11 +6,11 @@ import Grow from '@material-ui/core/Grow';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Input from '@material-ui/core/Input';
 import Icon from '@material-ui/core/Icon';
-import useStyles from '../styles';
+import { useStyles } from './styles';
 import PriceOffer from '../intermediateForm/priceOffer';
 
 const AdditionalOptions = (props) => {
-  const classes = useStyles()();
+  const classes = useStyles();
 
   useEffect(() => {
     loadCSS(

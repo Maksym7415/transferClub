@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-import useStyle from '../styles';
+import { useStyles } from './styles';
 
 const Comment = (props) => {
-  const classes = useStyle()();
+  const classes = useStyles();
 
 
   return (

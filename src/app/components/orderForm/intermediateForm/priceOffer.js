@@ -3,10 +3,10 @@ import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Container from '@material-ui/core/Container';
-import useStyles from '../styles';
+import { useStyles } from './styles';
 
 const PriceOffer = (props) => {
-  const classes = useStyles()();
+  const classes = useStyles();
   const [price, setPrice] = useState('');
   const [currency, setCurrency] = useState();
 
@@ -19,7 +19,7 @@ const PriceOffer = (props) => {
         <Paper className={classes.paperPrice}>
           <NativeSelect
             native='true'
-            className={classes.selectCurr}
+            className={classes.selectCurrency}
             variant='filled'
             value={currency}
             onChange={handleChangeCurrency}

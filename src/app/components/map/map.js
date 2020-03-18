@@ -4,7 +4,7 @@ import MapLoader from './loader';
 import MapMarker from './mapMarker';
 
 const Map = (props) => (
-  <div>
+  <>
     {props.children}
     <GoogleMap
      mapContainerStyle={{
@@ -22,7 +22,7 @@ const Map = (props) => (
     {props.marker}
     {props.direction}
     </GoogleMap>
-  </div>
+  </>
 );
 
 export default Map;

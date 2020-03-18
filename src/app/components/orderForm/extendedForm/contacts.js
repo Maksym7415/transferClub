@@ -3,12 +3,12 @@ import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
 import { loadCSS } from 'fg-loadcss';
 import Icon from '@material-ui/core/Icon';
-import useStyle from '../styles';
 import PhoneInput from 'react-phone-input-2';
+import { useStyles } from './styles';
 import 'react-phone-input-2/lib/material.css';
 
 const Contacts = (props) => {
-  const classes = useStyle()();
+  const classes = useStyles();
 
   useEffect(() => {
     loadCSS(

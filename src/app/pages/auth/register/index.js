@@ -19,6 +19,7 @@ import actionAuth from '../../../redux/actions/auth';
 import { useStyles } from './styles';
 import langData from './langData';
 import 'react-phone-input-2/lib/material.css';
+import dive from '../../../functions/dive';
 
 
 const SignUp = (props) => {
@@ -29,7 +30,9 @@ const SignUp = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const regData = useSelector((state) => state.promiseReducer.register);
+  const regResponse = useSelector((state) => dive`${state}promiseReducer.register.payload`);
+  const regError = useSelector((state) => dive`${state}promiseReducer.register.error`);
+  const authResponse = useSelector((state) => dive`${state}promiseReducer.auth.payload`);
   const dispatch = useDispatch();
 
   const changeName = (e) => setName(e.target.value);
@@ -46,13 +49,19 @@ const SignUp = (props) => {
   }, [props.history.location]);
 
   useEffect(() => {
-    if (regData && regData.payload) {
-      dispatch(actionAuth(password, email));
+    if (regResponse) {
+      dispatch(actionAuth({ password, email }));
     }
-    if (regData && regData.error) {
+    if (regError) {
       alert('fail');
     }
-  }, [regData]);
+  }, [regResponse, regError]);
+
+  useEffect(() => {
+    if (authResponse) {
+      props.history.push('/');
+    }
+  }, [authResponse]);
 
   return (
     <Container className={classes.container} component="main" maxWidth="xs">

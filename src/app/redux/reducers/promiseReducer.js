@@ -12,7 +12,7 @@ export default (state = {}, {
       };
     }
     case types.REQUEST_SUCCESS: {
-      if (name === 'auth') localStorage.authToken = payload.token;
+      if (name === 'auth') localStorage.authToken = payload.data;
       return {
         ...state,
         isFetching: false,

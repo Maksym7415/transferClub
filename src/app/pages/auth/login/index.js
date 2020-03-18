@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useStyles } from './styles';
 import langData from './langData';
 import authAction from '../../../redux/actions/auth';
+import dive from '../../../functions/dive';
 
 
 const SignIn = (props) => {
@@ -23,15 +24,21 @@ const SignIn = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const data = useSelector((state) => state.promiseReducer.auth);
-  const action = useDispatch();
+  const authResponse = useSelector((state) => dive`${state}promiseReducer.auth.payload`);
+  const dispatch = useDispatch();
   const changeEmail = (e) => setEmail(e.target.value);
   const changePassword = (e) => setPassword(e.target.value);
-  const handleClick = () => action(authAction({ password, email }));
+  const handleClick = () => dispatch(authAction({ password, email }));
 
   useEffect(() => {
     setLang(props.history.location.pathname.split('/')[1]);
   }, [props.history.location]);
+
+  useEffect(() => {
+    if (authResponse) {
+      props.history.push('/');
+    }
+  }, [authResponse]);
 
   return (
     <Container className={classes.container} component='main' maxWidth='xs'>

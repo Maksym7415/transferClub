@@ -13,10 +13,10 @@ import Paper from '@material-ui/core/Paper';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import useStyle from '../styles';
+import { useStyles } from './styles';
 
 const AdultsChildren = (props) => {
-  const classes = useStyle()();
+  const classes = useStyles();
 
   return (
     <Container>

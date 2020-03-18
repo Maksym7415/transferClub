@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter } from 'react-router';
 import Container from '@material-ui/core/Container';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import Directions from '../../components/map/directions';
 import useStyles from './styles';
 import Map from '../../components/map/map';
@@ -15,7 +16,7 @@ import AdditionalOptions from '../../components/orderForm/extendedForm/additiona
 import Comment from '../../components/orderForm/extendedForm/comment';
 import Contacts from '../../components/orderForm/extendedForm/contacts';
 import actionCreateOrder from '../../redux/actions/createOrder';
-import Button from '@material-ui/core/Button';
+import dive from '../../functions/dive';
 
 const MakeOrder = (props) => {
   const classes = useStyles()();
@@ -34,7 +35,7 @@ const MakeOrder = (props) => {
   const [autocompleteFrom, setAutocompleteFrom] = useState(null);
   const [autocompleteTo, setAutocompleteTo] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [backwardsSelectedDate, setBackwardsSelectedDate] = useState(null)
+  const [backwardsSelectedDate, setBackwardsSelectedDate] = useState(null);
   const [checked, setChecked] = useState({
     econom: false,
     standart: false,
@@ -54,8 +55,9 @@ const MakeOrder = (props) => {
   const [comment, setComment] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [price, setPrice] = useState(500)
+  const [price, setPrice] = useState(500);
   const orderResponse = useSelector((state) => state.promiseReducer.createOrder);
+  const userId = useSelector((state) => dive`${state}syncReducer.token.sub.id_user`);
   const dispatch = useDispatch();
 
   const handleOnLoadAutocompliteFrom = (e) => setAutocompleteFrom(e);
@@ -82,7 +84,7 @@ const MakeOrder = (props) => {
   const handleFrom = (e) => setFrom(e.target.value);
   const handleTo = (e) => setTo(e.target.value);
   const handleDateChange = (date) => setSelectedDate(date);
-  const handleBackwardsDateChange = (date) => setBackwardsSelectedDate(date)
+  const handleBackwardsDateChange = (date) => setBackwardsSelectedDate(date);
   const handleChangeCheckbox = (event) => {
     const item = event.target.name;
     setChecked((prev) => ({ ...prev, [item]: event.target.checked }));
@@ -93,7 +95,7 @@ const MakeOrder = (props) => {
   const handleChangeComment = (e) => setComment(e.target.value);
   const handleChangeEmail = (e) => setEmail(e.target.value);
   const handleCreateOrder = () => dispatch(actionCreateOrder({
-    user_id: 'string',
+    user_id: userId,
     date: Date.now(selectedDate),
     backwardsRoute: checked.addReturnWay,
     backwardsDate: Date.now(backwardsSelectedDate),
@@ -149,7 +151,7 @@ const MakeOrder = (props) => {
         <AdditionalOptions checked={checked} handleChangeCheckbox={handleChangeCheckbox} />
         <Comment comment={comment} handleChange={handleChangeComment} />
         <Contacts email={email} handleChangeEmail={handleChangeEmail} phone={phone} setPhone={setPhone} />
-        <Button 
+        <Button
           variant='contained'
           color='primary'
           onClick={handleCreateOrder}
@@ -158,7 +160,7 @@ const MakeOrder = (props) => {
         </Button>
       </Container>
       <Container className={classes.mapContainer}>
-        <Map width='30vw' height='70vh' marker={<MapMarker />} />
+        <Map width='100%' height='100%' marker={<MapMarker />} />
       </Container>
       <Directions />
     </Container>

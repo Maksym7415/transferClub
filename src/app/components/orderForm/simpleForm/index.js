@@ -13,11 +13,11 @@ import Input from '@material-ui/core/Input';
 import { withRouter } from 'react-router';
 import { Autocomplete } from '@react-google-maps/api';
 import { TabPanel, a11yProps } from '../tabPanel';
-import useStyles from '../styles';
+import { useStyles } from './styles';
 import langData from './langData';
 
 const SimpleForm = (props) => {
-  const classes = useStyles()();
+  const classes = useStyles();
   const [lang, setLang] = useState(props.history.location.pathname.split('/')[1]);
   const [tabs, setTabs] = useState(0);
 
