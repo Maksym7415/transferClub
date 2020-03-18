@@ -11,12 +11,6 @@ import PriceOffer from '../intermediateForm/priceOffer';
 
 const AdditionalOptions = (props) => {
   const classes = useStyles()();
-  const [checked, setChecked] = useState({});
-
-  const handleChangeCheckbox = (event) => {
-    const item = event.target.name;
-    setChecked((prev) => ({ ...prev, [item]: event.target.checked }));
-  };
 
   useEffect(() => {
     loadCSS(
@@ -31,15 +25,15 @@ const AdditionalOptions = (props) => {
       <div>
         <div>
           <FormControlLabel
-              control={<Checkbox name='checkOfferPrice' onChange={handleChangeCheckbox} checked={checked.checkOfferPrice || false} />}
+              control={<Checkbox name='checkOfferPrice' onChange={props.handleChangeCheckbox} checked={props.checked.checkOfferPrice || false} />}
               label='Offer your price'
             />
           <div>
             <Grow
-              in={checked.checkOfferPrice}
+              in={props.checked.checkOfferPrice}
               mountOnEnter={true}
               unmountOnExit={true}
-              {...(checked.checkOfferPrice ? { timeout: 1000 } : { timeout: 1000 })}
+              {...(props.checked.checkOfferPrice ? { timeout: 1000 } : { timeout: 1000 })}
             >
               <Paper elevation={4} className={classes.paper}>
                 <PriceOffer />
@@ -48,20 +42,20 @@ const AdditionalOptions = (props) => {
           </div>
         </div>
         <FormControlLabel
-            control={<Checkbox name='checkShareTrip' onChange={handleChangeCheckbox} checked={checked.checkShareTrip || false} />}
+            control={<Checkbox name='checkShareTrip' onChange={props.handleChangeCheckbox} checked={props.checked.checkShareTrip || false} />}
             label='I want to share my trip'
           />
         <div>
           <FormControlLabel
-              control={<Checkbox name='flightNumber' onChange={handleChangeCheckbox} checked={checked.flightNumber || false} />}
+              control={<Checkbox name='flightNumber' onChange={props.handleChangeCheckbox} checked={props.checked.flightNumber || false} />}
               label='Flight or train number'
             />
           <div>
             <Grow
-              in={checked.flightNumber}
+              in={props.checked.flightNumber}
               mountOnEnter={true}
               unmountOnExit={true}
-              {...(checked.flightNumber ? { timeout: 1000 } : { timeout: 1000 })}
+              {...(props.checked.flightNumber ? { timeout: 1000 } : { timeout: 1000 })}
             >
               <Paper elevation={4} className={classes.paper}>
                 <PriceOffer />
@@ -70,15 +64,15 @@ const AdditionalOptions = (props) => {
           </div>
           <div>
             <FormControlLabel
-                control={<Checkbox name='meetingName' onChange={handleChangeCheckbox} checked={checked.meetingName || false} />}
+                control={<Checkbox name='meetingName' onChange={props.handleChangeCheckbox} checked={props.checked.meetingName || false} />}
                 label='Meeting with a name sign is required'
               />
             <div>
               <Grow
-                in={checked.meetingName}
+                in={props.checked.meetingName}
                 mountOnEnter={true}
                 unmountOnExit={true}
-                {...(checked.meetingName ? { timeout: 1000 } : { timeout: 1000 })}
+                {...(props.checked.meetingName ? { timeout: 1000 } : { timeout: 1000 })}
               >
                 <Paper elevation={4} className={classes.paper}>
                   <Paper className={classes.meetingNamePromoCode}>
@@ -94,15 +88,15 @@ const AdditionalOptions = (props) => {
             </div>
             <div>
               <FormControlLabel
-                control={<Checkbox name='promoCode' onChange={handleChangeCheckbox} checked={checked.promoCode || false} />}
+                control={<Checkbox name='promoCode' onChange={props.handleChangeCheckbox} checked={props.checked.promoCode || false} />}
                 label='Promocode'
               />
                 <div>
                   <Grow
-                    in={checked.promoCode}
+                    in={props.checked.promoCode}
                     mountOnEnter={true}
                     unmountOnExit={true}
-                    {...(checked.promoCode ? { timeout: 1000 } : { timeout: 1000 })}
+                    {...(props.checked.promoCode ? { timeout: 1000 } : { timeout: 1000 })}
                   >
                     <Paper elevation={4} className={classes.paper}>
                       <Paper className={classes.meetingNamePromoCode}>

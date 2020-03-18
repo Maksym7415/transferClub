@@ -4,6 +4,8 @@ import Input from '@material-ui/core/Input';
 import { loadCSS } from 'fg-loadcss';
 import Icon from '@material-ui/core/Icon';
 import useStyle from '../styles';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/material.css';
 
 const Contacts = (props) => {
   const classes = useStyle()();
@@ -24,17 +26,18 @@ const Contacts = (props) => {
             style={{ margin: '0 10px', fontSize: '20px' }}
             className='fas fa-at'
           />
-          <Input style={{ width: '100%' }} placeholder='Enter email' disableUnderline={true} />
+          <Input style={{ width: '100%' }} onChange={props.handleChangeEmail} value={props.email} placeholder='Enter email' disableUnderline={true} />
         </Paper>
       </Paper>
       <Paper className={classes.contentItem}>
         <h3>Phone</h3>
         <Paper className={classes.contactsContent}>
-          <Icon
-            style={{ margin: '0 10px', fontSize: '20px' }}
-            className='fas fa-at'
+          <PhoneInput
+            placeholder="Enter phone number"
+            country="ua"
+            value={props.phone}
+            onChange={props.setPhone}
           />
-          <Input style={{ width: '100%' }} placeholder='Enter phone' disableUnderline={true} />
         </Paper>
       </Paper>
     </div>
