@@ -42,7 +42,7 @@ const TransferDate = (props) => {
       <Paper className={classes.returnWayContainer}>
         <FormControlLabel
           value="start"
-          control={<Checkbox value={props.checked} color="primary" />}
+          control={<Checkbox name='addReturnWay' value={props.checked} onChange={props.handleChangeCheckbox} color="primary" />}
           label="Add return way"
           labelPlacement="start"
         />
@@ -54,8 +54,8 @@ const TransferDate = (props) => {
               margin="normal"
               id="return-date-picker-inline"
               label="Return transfer date"
-              value={props.selectedDate}
-              onChange={props.handleDateChange}
+              value={props.backwardsSelectedDate}
+              onChange={props.backwardsHandleDateChange}
               KeyboardButtonProps={{
                 'aria-label': 'change date',
               }}
@@ -64,8 +64,8 @@ const TransferDate = (props) => {
               margin="normal"
               id="return-time-picker"
               label="Return pick-up time"
-              value={props.selectedDate}
-              onChange={props.handleDateChange}
+              value={props.backwardsSelectedDate}
+              onChange={props.backwardsHandleDateChange}
               KeyboardButtonProps={{
                 'aria-label': 'change time',
               }}
