@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Directions from '../../components/map/directions';
-import useStyles from './styles';
+import { useStyles } from './styles';
 import Map from '../../components/map/map';
 import MapMarker from '../../components/map/mapMarker';
 import SimpleForm from '../../components/orderForm/simpleForm';
@@ -17,55 +17,65 @@ import Comment from '../../components/orderForm/extendedForm/comment';
 import Contacts from '../../components/orderForm/extendedForm/contacts';
 import actionCreateOrder from '../../redux/actions/createOrder';
 import dive from '../../functions/dive';
+import actionSaveOrder from '../../redux/actions/saveOrderData';
+import actionDeleteData from '../../redux/actions/deleteData';
 
 const MakeOrder = (props) => {
-  const classes = useStyles()();
+  const classes = useStyles();
+  const savedOrder = useSelector((state) => state.syncReducer.order);
   const [lang, setLang] = useState(props.location.pathname.split('/')[1]);
-  const [from, setFrom] = useState({
-    address: '',
-    lat: '',
-    lng: '',
+  const [from, setFrom] = useState(savedOrder ? savedOrder.routes[0].address.title : '');
+  const [fromCoordinates, setFromCoordinates] = useState({
+    lat: savedOrder ? savedOrder.routes[0].address.latitude : '',
+    lng: savedOrder ? savedOrder.routes[0].address.longitude : '',
   });
   const [selectDuration, setSelectDuration] = useState('Duration');
-  const [to, setTo] = useState({
-    address: '',
-    lat: '',
-    lng: '',
+  const [to, setTo] = useState(savedOrder ? savedOrder.routes[1].address.title : '');
+  const [toCoordinates, setToCoordinates] = useState({
+    lat: savedOrder ? savedOrder.routes[1].address.latitude : '',
+    lng: savedOrder ? savedOrder.routes[1].address.longitude : '',
   });
   const [autocompleteFrom, setAutocompleteFrom] = useState(null);
   const [autocompleteTo, setAutocompleteTo] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [backwardsSelectedDate, setBackwardsSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(savedOrder ? new Date(savedOrder.timestamp) : new Date());
+  const [backwardsSelectedDate, setBackwardsSelectedDate] = useState(savedOrder ? new Date(savedOrder.timestamp) : null);
+  const [returnWay, setReturnWay] = useState(savedOrder ? savedOrder.backwardsRoute : false);
   const [checked, setChecked] = useState({
-    econom: false,
-    standart: false,
-    addReturnWay: false,
-    buiseness: false,
-    Van: false,
-    bus: false,
-    comfort: false,
-    checkOfferPrice: false,
-    checkShareTrip: false,
-    flightNumber: false,
-    meetingName: false,
-    promoCode: false,
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    checkOfferPrice: !!(savedOrder && savedOrder.price),
+    checkShareTrip: !!(savedOrder && savedOrder.shareOrder === true),
+    flightNumber: !!(savedOrder && savedOrder.flightTrainNumber),
+    meetingName: !!(savedOrder && savedOrder.nameSign),
+    promoCode: !!(savedOrder && savedOrder.promocode),
   });
-  const [adultsQuantity, setQuantity] = useState(2);
+  const [adultsQuantity, setQuantity] = useState(savedOrder ? savedOrder.adults : 1);
   const [openChildSeats, setOpenChildSeats] = useState(false);
-  const [comment, setComment] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [price, setPrice] = useState(500);
-  const orderResponse = useSelector((state) => state.promiseReducer.createOrder);
-  const userId = useSelector((state) => dive`${state}syncReducer.token.sub.id_user`);
+  const [comment, setComment] = useState(savedOrder ? savedOrder.comment : '');
+  const [phone, setPhone] = useState();
+  const createOrderResponse = useSelector((state) => dive`${state}promiseReducer.createOrder.payload.data`);
+  const userPersonalData = useSelector((state) => dive`${state}syncReducer.token.payload.sub`);
   const dispatch = useDispatch();
+  const [email, setEmail] = useState(userPersonalData ? userPersonalData.email : '');
+  const [offerPrice, setOfferPrice] = useState(savedOrder && savedOrder.price ? savedOrder.price : '');
+  const [offerPriceCurrency, setOfferPriceCurrency] = useState('Usd');
+  const [flightTrainNumber, setFlightTrainNumber] = useState(savedOrder && savedOrder.flightTrainNumber ? savedOrder.flightTrainNumber : '');
+  const [nameSign, setNameSign] = useState(savedOrder && savedOrder.nameSign ? savedOrder.nameSign : '');
+  const [promocode, setPromocode] = useState(savedOrder && savedOrder.promocode ? savedOrder.promocode : '');
+  const [infantSeatsQuantity, setInfantSeatsQuantity] = useState(savedOrder ? savedOrder.childrenSeats.smallSeat : 0);
+  const [convertableQuantity, setConvertableQuantity] = useState(savedOrder ? savedOrder.childrenSeats.middleSeat : 0);
+  const [boosterQuantity, setBoosterQuantity] = useState(savedOrder ? savedOrder.childrenSeats.largeSeat : 0);
 
   const handleOnLoadAutocompliteFrom = (e) => setAutocompleteFrom(e);
   const handleOnLoadAutocompliteTo = (e) => setAutocompleteTo(e);
   const handlePlaceChangedFrom = () => {
     if (autocompleteFrom !== null) {
-      setFrom((prev) => ({
-        address: autocompleteFrom.getPlace().formatted_address,
+      setFrom(autocompleteFrom.getPlace().formatted_address);
+      setFromCoordinates(() => ({
         lat: autocompleteFrom.getPlace().geometry.location.lat(),
         lng: autocompleteFrom.getPlace().geometry.location.lng(),
       }));
@@ -73,8 +83,8 @@ const MakeOrder = (props) => {
   };
   const handlePlaceChangedTo = () => {
     if (autocompleteTo !== null) {
-      setFrom((prev) => ({
-        address: autocompleteTo.getPlace().formatted_address,
+      setTo(autocompleteTo.getPlace().formatted_address);
+      setToCoordinates(() => ({
         lat: autocompleteTo.getPlace().geometry.location.lat(),
         lng: autocompleteTo.getPlace().geometry.location.lng(),
       }));
@@ -89,67 +99,148 @@ const MakeOrder = (props) => {
     const item = event.target.name;
     setChecked((prev) => ({ ...prev, [item]: event.target.checked }));
   };
-  const handlePlusQuantity = () => setQuantity((prev) => (prev < 4 ? prev + 1 : 4));
-  const handleMinusQuantity = () => setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+  const handlePlusAdultsQuantity = () => setQuantity((prev) => (prev < 4 ? prev + 1 : 4));
+  const handleMinusAdultsQuantity = () => setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+  const handlePlusInfantSeat = () => setInfantSeatsQuantity((prev) => (prev < 3 ? prev + 1 : 3));
+  const handleMinusInfantSeat = () => setInfantSeatsQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+  const handleMinusConvertableSeat = () => setConvertableQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+  const handlePlusConvertableSeat = () => setConvertableQuantity((prev) => (prev < 3 ? prev + 1 : 3));
+  const handleMinusBoosterSeats = () => setBoosterQuantity((prev) => (prev > 0 ? prev - 1 : 0));
   const handleOpenChildSeats = () => setOpenChildSeats(!openChildSeats);
+  const handlePlusBoosterSeats = () => setBoosterQuantity((prev) => (prev < 3 ? prev + 1 : 3));
   const handleChangeComment = (e) => setComment(e.target.value);
   const handleChangeEmail = (e) => setEmail(e.target.value);
-  const handleCreateOrder = () => dispatch(actionCreateOrder({
-    user_id: userId,
-    date: Date.now(selectedDate),
-    backwardsRoute: checked.addReturnWay,
-    backwardsDate: Date.now(backwardsSelectedDate),
-    adults: adultsQuantity,
-    childrenSeats: {
-      smallSeat: 0,
-      middleSeat: 0,
-      largeSeat: 0,
-    },
-    price,
-    shareOrder: checked.checkShareTrip,
-    flightTrainNumber: 'string',
-    nameSign: checked.meetingName,
-    promocode: 'string',
-    comment: 'string',
-    routes: [
-      {
-        point_type: 'Start',
-        address: {
-          title: from.adress,
-          longitude: from.lng,
-          latitude: from.lat,
-        },
+  const handleChangeOfferPriceCurrency = (e) => setOfferPriceCurrency(e.target.value);
+  const handleOfferPrice = (e) => setOfferPrice(+e.target.value);
+  const handleFlightTrainNumber = (e) => setFlightTrainNumber(e.target.value);
+  const handleNameSign = (e) => setNameSign(e.target.value);
+  const handlePromocode = (e) => setPromocode(e.target.value);
+  const handleChangeReturnWay = (e) => setReturnWay(!returnWay);
+
+  const handleCreateOrder = () => {
+    const order = {
+      timestamp: Date.now(selectedDate),
+      backwardsRoute: returnWay,
+      backwardsTimestamp: checked.addReturnWay && Date.now(backwardsSelectedDate),
+      adults: adultsQuantity,
+      childrenSeats: {
+        smallSeat: infantSeatsQuantity,
+        middleSeat: convertableQuantity,
+        largeSeat: boosterQuantity,
       },
-      {
-        point_type: 'Finish',
-        address: {
-          title: to.adress,
-          longitude: to.lng,
-          latitude: to.lat,
+      price: offerPrice,
+      shareOrder: checked.checkShareTrip,
+      flightTrainNumber: checked.flightNumber === true ? flightTrainNumber : '',
+      nameSign: checked.meetingName === true ? nameSign : '',
+      promocode: checked.promoCode === true ? promocode : '',
+      comment,
+      routes: [
+        {
+          point_type: 'Start',
+          address: {
+            title: from,
+            longitude: fromCoordinates.lng,
+            latitude: fromCoordinates.lat,
+          },
         },
-      },
-    ],
-    vehicle_types: [
-      0,
-    ],
-  }));
+        {
+          point_type: 'Finish',
+          address: {
+            title: to,
+            longitude: toCoordinates.lng,
+            latitude: toCoordinates.lat,
+          },
+        },
+      ],
+      vehicle_types: [
+        1,
+      ],
+    };
+    if (userPersonalData) {
+      dispatch(actionCreateOrder({ user_id: userPersonalData.id_user, ...order }));
+    } else {
+      dispatch(actionSaveOrder(order, 'order'));
+      props.history.push(`/${lang}/auth`);
+    }
+  };
 
   useEffect(() => {
     setLang(props.location.pathname.split('/')[1]);
   }, [props.location]);
 
+  useEffect(() => {
+    if (createOrderResponse) {
+      if (savedOrder) dispatch(actionDeleteData('order'));
+      dispatch(actionDeleteData('createOrder'));
+      props.history.push(`/${lang}/orders`);
+    }
+  }, [createOrderResponse]);
 
   return (
     <Container className={classes.container}>
-    {console.log(checked)}
+      {console.log(checked.addReturnWay)}
       <CssBaseline />
       <Container className={classes.formContainer}>
-        <SimpleForm from={from.adress} select={selectDuration} to={to.address} autoCompleteFrom={autocompleteFrom} autoCompleteTo={autocompleteTo} handleOnLoadAutocompliteFrom={handleOnLoadAutocompliteFrom} handleOnLoadAutocompliteTo={handleOnLoadAutocompliteTo} handlePlaceChangedFrom={handlePlaceChangedFrom} handlePlaceChangedTo={handlePlaceChangedTo} handleChangeSelect={handleChangeSelectDuration} handleFrom={handleFrom} handleTo={handleTo} />
-        <TransferDate selectedDate={selectedDate} handleDateChange={handleDateChange} backwardsSelectedDate={backwardsSelectedDate} backwardsHandleDateChange={handleBackwardsDateChange} checked={checked} handleChangeCheckbox={handleChangeCheckbox} />
-        <CarsList checked={checked} handleChange={handleChangeCheckbox} />
-        <AdultsChildren adultsQuantity={adultsQuantity} openChildSeats={openChildSeats} handlePlusQuantity={handlePlusQuantity} handleMinusQuantity={handleMinusQuantity} handleOpenChildSeats={handleOpenChildSeats} />
-        <AdditionalOptions checked={checked} handleChangeCheckbox={handleChangeCheckbox} />
-        <Comment comment={comment} handleChange={handleChangeComment} />
+        <SimpleForm
+          from={from}
+          select={selectDuration}
+          to={to}
+          autoCompleteFrom={autocompleteFrom}
+          autoCompleteTo={autocompleteTo}
+          handleOnLoadAutocompliteFrom={handleOnLoadAutocompliteFrom}
+          handleOnLoadAutocompliteTo={handleOnLoadAutocompliteTo}
+          handlePlaceChangedFrom={handlePlaceChangedFrom}
+          handlePlaceChangedTo={handlePlaceChangedTo}
+          handleChangeSelect={handleChangeSelectDuration}
+          handleFrom={handleFrom}
+          handleTo={handleTo}
+        />
+        <TransferDate
+          selectedDate={selectedDate}
+          handleDateChange={handleDateChange}
+          backwardsSelectedDate={backwardsSelectedDate}
+          backwardsHandleDateChange={handleBackwardsDateChange}
+          checked={returnWay}
+          handleChangeCheckbox={handleChangeReturnWay}
+        />
+        <CarsList
+          checked={checked}
+          handleChange={handleChangeCheckbox}
+        />
+        <AdultsChildren
+          adultsQuantity={adultsQuantity}
+          openChildSeats={openChildSeats}
+          handlePlusAdultsQuantity={handlePlusAdultsQuantity}
+          handleMinusAdultsQuantity={handleMinusAdultsQuantity}
+          handleOpenChildSeats={handleOpenChildSeats}
+          handleMinusInfantSeat={handleMinusInfantSeat}
+          handlePlusInfantSeat={handlePlusInfantSeat}
+          infantSeatsQuantity={infantSeatsQuantity}
+          handleMinusConvertableSeat={handleMinusConvertableSeat}
+          convertableQuantity={convertableQuantity}
+          handlePlusConvertableSeat={handlePlusConvertableSeat}
+          handleMinusBoosterSeats={handleMinusBoosterSeats}
+          boosterQuantity={boosterQuantity}
+          handlePlusBoosterSeats={handlePlusBoosterSeats}
+        />
+        <AdditionalOptions
+          offerPrice={offerPrice}
+          offerPriceCurrency={offerPriceCurrency}
+          handleChangeOfferPriceCurrency={handleChangeOfferPriceCurrency}
+          handleOfferPrice={handleOfferPrice}
+          checked={checked}
+          handleChangeCheckbox={handleChangeCheckbox}
+          handleFlightTrainNumber={handleFlightTrainNumber}
+          flightTrainNumber={flightTrainNumber}
+          nameSign={nameSign}
+          handleNameSign={handleNameSign}
+          promocode={promocode}
+          handlePromocode={handlePromocode}
+        />
+        <Comment
+          comment={comment}
+          handleComment={handleChangeComment}
+        />
         <Contacts email={email} handleChangeEmail={handleChangeEmail} phone={phone} setPhone={setPhone} />
         <Button
           variant='contained'
@@ -162,7 +253,7 @@ const MakeOrder = (props) => {
       <Container className={classes.mapContainer}>
         <Map width='100%' height='100%' marker={<MapMarker />} />
       </Container>
-      <Directions />
+      {/* <Directions /> */}
     </Container>
   );
 };

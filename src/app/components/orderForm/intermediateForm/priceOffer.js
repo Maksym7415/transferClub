@@ -7,11 +7,11 @@ import { useStyles } from './styles';
 
 const PriceOffer = (props) => {
   const classes = useStyles();
-  const [price, setPrice] = useState('');
-  const [currency, setCurrency] = useState();
+  // const [price, setPrice] = useState('');
+  // const [currency, setCurrency] = useState();
 
-  const handleChangeCurrency = (e) => setCurrency(e.target.value);
-  const handlePrice = (e) => setPrice(e.target.value);
+  // const handleChangeCurrency = (e) => setCurrency(e.target.value);
+  // const handlePrice = (e) => setPrice(e.target.value);
 
   return (
     <>
@@ -21,14 +21,14 @@ const PriceOffer = (props) => {
             native='true'
             className={classes.selectCurrency}
             variant='filled'
-            value={currency}
-            onChange={handleChangeCurrency}
+            value={props.offerPriceCurrency}
+            onChange={props.handleChangeOfferPriceCurrency}
             disableUnderline={true}
           >
             <option value='euro'>EU</option>
             <option value='Usd'>USD</option>
           </NativeSelect>
-          <Input fullWidth={true} value={price} onChange={handlePrice} disableUnderline={true} placeholder='Offer your price'/>
+          <Input fullWidth={true} value={props.offerPrice} onChange={props.handleOfferPrice} disableUnderline={true} placeholder='Offer your price'/>
         </Paper>
       </Container>
     </>

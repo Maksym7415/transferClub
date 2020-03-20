@@ -1,7 +1,6 @@
 
 import * as types from '../constants/actionTypes';
 
-export default (name) => ({
+export default () => ({
   type: types.LOGOUT,
-  name,
 });

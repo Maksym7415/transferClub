@@ -1,0 +1,22 @@
+.address p {
+  margin: 0;
+  font-size: 17px;
+  font-weight: bold;
+}
+.address-label {
+  margin-right: 20px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  background-color: #fa730c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.order-date {
+  color: #2cd10a;
+}
+.my-class {
+  background-color: #000000
+}

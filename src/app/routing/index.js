@@ -1,9 +1,5 @@
 import React, { Fragment } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
-import { ThemeProvider } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
-import dive from '../functions/dive';
 import MapLoader from '../components/map/loader';
 import Header from '../pages/header';
 import MakeOrder from '../pages/makeOrder';
@@ -12,6 +8,7 @@ import Public from '../pages/public';
 import SignIn from '../pages/auth/login';
 import SignUp from '../pages/auth/register';
 import Authorization from '../pages/auth';
+import Orders from '../pages/orders';
 
 function Router(props) {
   return (
@@ -27,6 +24,7 @@ function Router(props) {
                 <Route component = {SignUp} exact path = '/:lang/register'/>
                 <Route component = {MakeOrder} exact path = '/:lang/order' />
                 <Route component = {Pay} exact path = '/:lang/pay'/>
+                <Route component = {Orders} exact path = '/:lang/orders'/>
                 <Route component = {() => <div>not found</div>} />
               </Switch>
             </div>
@@ -36,4 +34,4 @@ function Router(props) {
 }
 
 
-export default connect((state) => ({ lang: dive`${state}syncReducer.lang` }))(Router);
+export default Router;

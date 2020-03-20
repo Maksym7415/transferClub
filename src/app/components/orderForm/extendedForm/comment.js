@@ -10,7 +10,7 @@ const Comment = (props) => {
     <>
       <h3>Comment</h3>
       <Paper className={classes.comment}>
-        <textarea placeholder='Provide your requiqrments, special need' className={classes.commentText} onChange={props.handleChange} value={props.comment} />
+        <textarea placeholder='Provide your requiqrments, special need' className={classes.commentText} onChange={props.handleComment} value={props.comment} />
       </Paper>
     </>
   );

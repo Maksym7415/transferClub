@@ -5,10 +5,13 @@ export default (state = {}, { data, type, name }) => {
   switch (type) {
     case types.SYNC: {
       if (name === 'token') {
-        const token = jwt_decode(data);
+        const payload = jwt_decode(data);
         return {
           ...state,
-          [name]: token,
+          [name]: {
+            data,
+            payload,
+          },
         };
       }
 
@@ -19,6 +22,12 @@ export default (state = {}, { data, type, name }) => {
     }
     case types.LOGOUT: {
       localStorage.removeItem('authToken');
+      return {
+        ...state,
+        token: undefined,
+      };
+    }
+    case types.DELETE_DATA: {
       return {
         ...state,
         [name]: undefined,

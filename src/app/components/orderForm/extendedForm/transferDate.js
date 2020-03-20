@@ -42,10 +42,9 @@ const TransferDate = (props) => {
       </Paper>
       <Paper className={classes.returnWayContainer}>
         <FormControlLabel
-          value="start"
-          control={<Checkbox name='addReturnWay' value={props.checked} onChange={props.handleChangeCheckbox} color="primary" />}
-          label="Add return way"
-          labelPlacement="start"
+              control={<Checkbox name='returnWay' onChange={props.handleChangeCheckbox} checked={props.checked || false} />}
+              label='Add return way'
+              labelPlacement="start"
         />
         <Paper className={classes.dataPickerContainer}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>

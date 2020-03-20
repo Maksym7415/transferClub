@@ -6,12 +6,15 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  toolbarIcon: {
+  headerContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     padding: '0 8px 0 20px',
     ...theme.mixins.toolbar,
+  },
+  toolbarIcon: {
+    marginLeft: 'auto',
   },
   drawerPaper: {
     height: '100vh',

@@ -19,15 +19,15 @@ const AdultsChildren = (props) => {
   const classes = useStyles();
 
   return (
-    <Container>
-      <Paper className={`adultsQuantity ${classes.adultsQuantity}`}>
+    <Container className={classes.adultsChildsContainer}>
+      <Paper elevation={0} className={`adultsQuantity ${classes.adultsQuantity}`}>
         <span>Adults</span>
         <div>
-          <Fab onClick={props.handleMinusQuantity} size='small' color="secondary">
+          <Fab onClick={props.handleMinusAdultsQuantity} size='small' color="secondary">
               <RemoveIcon fontSize="small" />
           </Fab>
           <span>{props.adultsQuantity}</span>
-          <Fab onClick={props.handlePlusQuantity} size='small' color="secondary">
+          <Fab onClick={props.handlePlusAdultsQuantity} size='small' color="secondary">
               <AddIcon />
           </Fab>
         </div>
@@ -46,7 +46,7 @@ const AdultsChildren = (props) => {
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary="Type of child seat" />
         {props.openChildSeats ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={props.openChildSeats} timeout="auto" unmountOnExit>
@@ -56,15 +56,15 @@ const AdultsChildren = (props) => {
               <span>Infant carrier</span>
               <div>
                 <Fab
-                  onClick={props.handleMinusQuantity}
+                  onClick={props.handleMinusInfantSeat}
                   size="small"
                   color="secondary"
                 >
                   <RemoveIcon fontSize="small" />
                 </Fab>
-                <span>{props.adultsQuantity}</span>
+                <span>{props.infantSeatsQuantity}</span>
                 <Fab
-                  onClick={props.handlePlusQuantity}
+                  onClick={props.handlePlusInfantSeat}
                   size="small"
                   color="secondary"
                 >
@@ -76,15 +76,15 @@ const AdultsChildren = (props) => {
               <span>Convertable seats</span>
               <div>
                 <Fab
-                  onClick={props.handleMinusQuantity}
+                  onClick={props.handleMinusConvertableSeat}
                   size="small"
                   color="secondary"
                 >
                   <RemoveIcon fontSize="small" />
                 </Fab>
-                <span>{props.adultsQuantity}</span>
+                <span>{props.convertableQuantity}</span>
                 <Fab
-                  onClick={props.handlePlusQuantity}
+                  onClick={props.handlePlusConvertableSeat}
                   size="small"
                   color="secondary"
                 >
@@ -96,15 +96,15 @@ const AdultsChildren = (props) => {
               <span>Booster seats</span>
               <div>
                 <Fab
-                  onClick={props.handleMinusQuantity}
+                  onClick={props.handleMinusBoosterSeats}
                   size="small"
                   color="secondary"
                 >
                   <RemoveIcon fontSize="small" />
                 </Fab>
-                <span>{props.adultsQuantity}</span>
+                <span>{props.boosterQuantity}</span>
                 <Fab
-                  onClick={props.handlePlusQuantity}
+                  onClick={props.handlePlusBoosterSeats}
                   size="small"
                   color="secondary"
                 >

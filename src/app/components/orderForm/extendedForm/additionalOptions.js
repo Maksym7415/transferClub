@@ -36,7 +36,12 @@ const AdditionalOptions = (props) => {
               {...(props.checked.checkOfferPrice ? { timeout: 1000 } : { timeout: 1000 })}
             >
               <Paper elevation={4} className={classes.paper}>
-                <PriceOffer />
+                <PriceOffer 
+                  offerPrice={props.offerPrice}
+                  offerPriceCurrency={props.offerPriceCurrency}
+                  handleChangeOfferPriceCurrency={props.handleChangeOfferPriceCurrency}
+                  handleOfferPrice={props.handleOfferPrice}
+                />
               </Paper>
             </Grow>
           </div>
@@ -58,7 +63,13 @@ const AdditionalOptions = (props) => {
               {...(props.checked.flightNumber ? { timeout: 1000 } : { timeout: 1000 })}
             >
               <Paper elevation={4} className={classes.paper}>
-                <PriceOffer />
+                <Input 
+                  style={{ width: '100%' }}
+                  disableUnderline={true}
+                  placeholder='EXAMPLE NR23435'
+                  value={props.flightTrainNumber}
+                  onChange={props.handleFlightTrainNumber}
+                />
               </Paper>
             </Grow>
           </div>
@@ -81,6 +92,8 @@ const AdditionalOptions = (props) => {
                       style={{ width: '100%' }}
                       disableUnderline={true}
                       placeholder='Please fill in passengers name'
+                      value={props.nameSign}
+                      onChange={props.handleNameSign}
                     />
                   </Paper>
                 </Paper>
@@ -105,6 +118,8 @@ const AdditionalOptions = (props) => {
                           style={{ width: '100%' }}
                           disableUnderline={true}
                           placeholder='Enter promo code'
+                          value={props.promocode}
+                          onChange={props.handlePromocode}
                         />
                       </Paper>
                     </Paper>

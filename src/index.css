@@ -1,5 +1,6 @@
 @import url('app/components/orderForm/styles.css');
 @import url('app/pages/auth/register/styles.css');
+@import url('app/pages/orders/components/orderCard/style.css');
 
 body {
   position: relative;

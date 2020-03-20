@@ -33,7 +33,6 @@ const Header = (props) => {
 
   return (
     <div className={classes.root}>
-    {console.log(lang)}
       <CssBaseline/>
       <AppBar position="absolute" className={clsx(classes.appBar, !open && classes.appBarShift)} >
           <Toolbar className={classes.toolbar}>

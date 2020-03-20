@@ -27,6 +27,9 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: '0',
     boxShadow: '0 0 0',
   },
+  adultsChildsContainer: {
+    padding: '0',
+  },
   adultsQuantity: {
     display: 'flex',
     flexDirection: 'row',
@@ -37,11 +40,16 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  childSeatsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
   childSeatsQuantity: {
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   meetingNamePromoCode: {
     display: 'flex',
