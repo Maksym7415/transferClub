@@ -30,11 +30,24 @@ export const useStyles = makeStyles((theme) => ({
   adultsChildsContainer: {
     padding: '0',
   },
+  seatsListContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '75%',
+  },
+  childSeatsHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  adultsButtons: {
+    width: '75%',
+  },
   adultsQuantity: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     padding: '10px 0',
+    justifyContent: 'space-between',
   },
   childSeatsItem: {
     display: 'flex',
@@ -43,6 +56,7 @@ export const useStyles = makeStyles((theme) => ({
   childSeatsContainer: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   childSeatsQuantity: {
     width: '100%',

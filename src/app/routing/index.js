@@ -8,7 +8,8 @@ import Public from '../pages/public';
 import SignIn from '../pages/auth/login';
 import SignUp from '../pages/auth/register';
 import Authorization from '../pages/auth';
-import Orders from '../pages/orders';
+import Orders from '../pages/orders/upcoming';
+import ViewOffers from '../pages/orders/viewOffers';
 
 function Router(props) {
   return (
@@ -25,6 +26,7 @@ function Router(props) {
                 <Route component = {MakeOrder} exact path = '/:lang/order' />
                 <Route component = {Pay} exact path = '/:lang/pay'/>
                 <Route component = {Orders} exact path = '/:lang/orders'/>
+                <Route component = {ViewOffers} exact path = '/:lang/orders/:id'/>
                 <Route component = {() => <div>not found</div>} />
               </Switch>
             </div>

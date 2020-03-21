@@ -123,6 +123,7 @@ const MakeOrder = (props) => {
       backwardsRoute: returnWay,
       backwardsTimestamp: checked.addReturnWay && Date.now(backwardsSelectedDate),
       adults: adultsQuantity,
+      distance: 500,
       childrenSeats: {
         smallSeat: infantSeatsQuantity,
         middleSeat: convertableQuantity,

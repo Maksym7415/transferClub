@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import Typography from '@material-ui/core/Typography';
 import { useStyles } from './styles';
 
 const AdultsChildren = (props) => {
@@ -22,7 +23,7 @@ const AdultsChildren = (props) => {
     <Container className={classes.adultsChildsContainer}>
       <Paper elevation={0} className={`adultsQuantity ${classes.adultsQuantity}`}>
         <span>Adults</span>
-        <div>
+        <div className={classes.adultsButtons}>
           <Fab onClick={props.handleMinusAdultsQuantity} size='small' color="secondary">
               <RemoveIcon fontSize="small" />
           </Fab>
@@ -32,90 +33,80 @@ const AdultsChildren = (props) => {
           </Fab>
         </div>
       </Paper>
-      <List
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Child seats
-        </ListSubheader>
-      }
-      className={classes.childSeatsContainer}
-    >
-      <ListItem button onClick={props.handleOpenChildSeats}>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="Type of child seat" />
-        {props.openChildSeats ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-      <Collapse in={props.openChildSeats} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem className={classes.childSeatsItem}>
-            <Paper className={`adultsQuantity ${classes.childSeatsQuantity}`}>
-              <span>Infant carrier</span>
-              <div>
-                <Fab
-                  onClick={props.handleMinusInfantSeat}
-                  size="small"
-                  color="secondary"
-                >
-                  <RemoveIcon fontSize="small" />
-                </Fab>
-                <span>{props.infantSeatsQuantity}</span>
-                <Fab
-                  onClick={props.handlePlusInfantSeat}
-                  size="small"
-                  color="secondary"
-                >
-                  <AddIcon />
-                </Fab>
-              </div>
-            </Paper>
-            <Paper className={`adultsQuantity ${classes.childSeatsQuantity}`}>
-              <span>Convertable seats</span>
-              <div>
-                <Fab
-                  onClick={props.handleMinusConvertableSeat}
-                  size="small"
-                  color="secondary"
-                >
-                  <RemoveIcon fontSize="small" />
-                </Fab>
-                <span>{props.convertableQuantity}</span>
-                <Fab
-                  onClick={props.handlePlusConvertableSeat}
-                  size="small"
-                  color="secondary"
-                >
-                  <AddIcon />
-                </Fab>
-              </div>
-            </Paper>
-            <Paper className={`adultsQuantity ${classes.childSeatsQuantity}`}>
-              <span>Booster seats</span>
-              <div>
-                <Fab
-                  onClick={props.handleMinusBoosterSeats}
-                  size="small"
-                  color="secondary"
-                >
-                  <RemoveIcon fontSize="small" />
-                </Fab>
-                <span>{props.boosterQuantity}</span>
-                <Fab
-                  onClick={props.handlePlusBoosterSeats}
-                  size="small"
-                  color="secondary"
-                >
-                  <AddIcon />
-                </Fab>
-              </div>
-            </Paper>
-          </ListItem>
-        </List>
-      </Collapse>
-    </List>
+      <Paper
+        elevation={0}
+        className={classes.childSeatsContainer}
+      >
+        <span>Child seats</span>
+        <div className={classes.seatsListContainer}>
+          <Paper className={classes.childSeatsHeader} elevation={0} button onClick={props.handleOpenChildSeats}>
+            <Typography>Type of child seat</Typography>
+            {props.openChildSeats ? <ExpandLess /> : <ExpandMore />}
+          </Paper>
+          <Collapse in={props.openChildSeats} timeout={props.openChildSeats ? 700 : 700} unmountOnExit>
+              <Paper elevation={0} className={`adultsQuantity ${classes.childSeatsQuantity}`}>
+                <span>Infant carrier</span>
+                <div>
+                  <Fab
+                    onClick={props.handleMinusInfantSeat}
+                    size="small"
+                    color="secondary"
+                  >
+                    <RemoveIcon fontSize="small" />
+                  </Fab>
+                  <span>{props.infantSeatsQuantity}</span>
+                  <Fab
+                    onClick={props.handlePlusInfantSeat}
+                    size="small"
+                    color="secondary"
+                  >
+                    <AddIcon />
+                  </Fab>
+                </div>
+              </Paper>
+              <Paper elevation={0} className={`adultsQuantity ${classes.childSeatsQuantity}`}>
+                <span>Convertable seats</span>
+                <div>
+                  <Fab
+                    onClick={props.handleMinusConvertableSeat}
+                    size="small"
+                    color="secondary"
+                  >
+                    <RemoveIcon fontSize="small" />
+                  </Fab>
+                  <span>{props.convertableQuantity}</span>
+                  <Fab
+                    onClick={props.handlePlusConvertableSeat}
+                    size="small"
+                    color="secondary"
+                  >
+                    <AddIcon />
+                  </Fab>
+                </div>
+              </Paper>
+              <Paper elevation={0} className={`adultsQuantity ${classes.childSeatsQuantity}`}>
+                <span>Booster seats</span>
+                <div>
+                  <Fab
+                    onClick={props.handleMinusBoosterSeats}
+                    size="small"
+                    color="secondary"
+                  >
+                    <RemoveIcon fontSize="small" />
+                  </Fab>
+                  <span>{props.boosterQuantity}</span>
+                  <Fab
+                    onClick={props.handlePlusBoosterSeats}
+                    size="small"
+                    color="secondary"
+                  >
+                    <AddIcon />
+                  </Fab>
+                </div>
+              </Paper>
+        </Collapse>
+      </div>
+    </Paper>
     </Container>
   );
 };
