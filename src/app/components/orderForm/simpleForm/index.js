@@ -54,6 +54,8 @@ const SimpleForm = (props) => {
             <Autocomplete
               onLoad={props.handleOnLoadAutocompliteFrom}
               onPlaceChanged={props.handlePlaceChangedFrom}
+              fullWidth={true}
+              class={classes.autocomplete}
             >
               <Input fullWidth={true} value={props.from} onChange={props.handleFrom} disableUnderline={true} placeholder={langData.from[lang]}/>
             </Autocomplete>
@@ -63,6 +65,7 @@ const SimpleForm = (props) => {
             <Autocomplete
               onLoad={props.handleOnLoadAutocompliteTo}
               onPlaceChanged={props.handlePlaceChangedTo}
+              fullWidth={true}
             >
               <Input fullWidth={true} value={props.to} onChange={props.handleTo} disableUnderline={true} placeholder={langData.to[lang]}/>
             </Autocomplete>

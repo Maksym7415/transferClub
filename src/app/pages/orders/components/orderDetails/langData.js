@@ -27,4 +27,16 @@ export default {
     en: 'Cancel request',
     ru: 'Отменить заявку',
   },
+  passengersName: {
+    en: 'Fill in passengers name',
+    ru: 'Введите имя пассажира',
+  },
+  flightTrainNumberPlaceholder: {
+    en: 'EXAMPLE NR23435',
+    ru: 'НАПРИМЕР АВ23423',
+  },
+  promocodePlaceholder: {
+    en: 'Enter promocode',
+    ru: 'Введите промокод',
+  },
 };

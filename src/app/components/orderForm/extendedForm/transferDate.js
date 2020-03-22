@@ -5,6 +5,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Container from '@material-ui/core/Container';
+import Collapse from '@material-ui/core/Collapse';
 import { useStyles } from './styles';
 
 const TransferDate = (props) => {
@@ -46,6 +47,7 @@ const TransferDate = (props) => {
               label='Add return way'
               labelPlacement="start"
         />
+        <Collapse in={props.openReturnWay} timeout={props.openReturnWay ? 700 : 700} unmountOnExit>
         <Paper className={classes.dataPickerContainer}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
@@ -75,6 +77,7 @@ const TransferDate = (props) => {
               />
           </MuiPickersUtilsProvider>
         </Paper>
+        </Collapse>
       </Paper>
       </Container>
   );

@@ -18,8 +18,8 @@ const Contacts = (props) => {
   }, []);
 
   return (
-    <div>
-      <Paper className={classes.contentItem}>
+    <div style={{ width: '100%', marginBottom: '20px' }}>
+      <Paper elevation={0} className={classes.contentItem}>
         <h3>Email</h3>
         <Paper className={classes.contactsContent}>
           <Icon
@@ -29,7 +29,7 @@ const Contacts = (props) => {
           <Input style={{ width: '100%' }} onChange={props.handleChangeEmail} value={props.email} placeholder='Enter email' disableUnderline={true} />
         </Paper>
       </Paper>
-      <Paper className={classes.contentItem}>
+      <Paper elevation={0} className={classes.contentItem}>
         <h3>Phone</h3>
         <Paper className={classes.contactsContent}>
           <PhoneInput

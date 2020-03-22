@@ -29,30 +29,84 @@ const OrderDetails = (props) => {
   }, [props.location]);
 
   return (
-    <Container className={classes.orderDetailsContainer}>
-      <Container className={classes.formsContainer}>
-        <div className={classes.orderFormContainer}>
-          <Paper className={classes.labelContainer}>
-            <p className={classes.formLabel}>{langData.passengers[lang]}</p>
-            <p className={classes.formLabel}>{langData.nameSign[lang]}</p>
-            <p className={classes.formLabel}>{langData.flightTrainNumber[lang]}</p>
-            <p className={classes.formLabel}>{langData.promocode[lang]}</p>
-            <p className={classes.formLabel}>{langData.transportTypes[lang]}</p>
-          </Paper>
-          <Paper className={classes.valuesContainer}>
-            <p className={classes.formValue}>{order && order.adults}</p>
-            <Input disableUnderline={true} className={classes.formInput} value={nameSign} onChange={handleNameSign} />
-            <Input disableUnderline={true} className={classes.formInput} value={flightTrainNumber} onChange={handleFlightTrainNumber} />
-            <Input disableUnderline={true} className={classes.formInput} value={promocode} onChange={handlePromocode} />
-            <p className={classes.formValue}>{order.vehicles || 'Standart'}</p>
-          </Paper>
-        </div>
-        <Button>{langData.save[lang]}</Button>
-        <Button>{langData.cancelRequest[lang]}</Button>
-      </Container>
-      <Container className={classes.mapContainer}>
-        <Map width='100%' height='100%' marker={<MapMarker />} />
-      </Container>
+    <Container className={classes.orderDetailsRoot}>
+      <div className={classes.orderDetailsContainer}>
+        <Container className={classes.formsContainer}>
+          <Grid className={classes.gridContainer} container spacing={1}>
+            <Grid className={classes.gridRow} container item xs={12} spacing={0}>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper elevation={0}>{langData.passengers[lang]}</Paper>
+              </Grid>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper elevation={0}>{order && order.adults}</Paper>
+              </Grid>
+            </Grid>
+            <Grid className={classes.gridRow} container item xs={12} spacing={0}>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper elevation={0}>{langData.nameSign[lang]}</Paper>
+              </Grid>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper>
+                  <Input
+                    disableUnderline={true}
+                    className={classes.formInput}
+                    value={nameSign}
+                    placeholder={langData.passengersName[lang]}
+                    onChange={handleNameSign}
+                  />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Grid className={classes.gridRow} container item xs={12} spacing={0}>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper elevation={0}>{langData.flightTrainNumber[lang]}</Paper>
+              </Grid>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper>
+                  <Input
+                    placeholder={langData.flightTrainNumberPlaceholder[lang]}
+                    disableUnderline={true}
+                    className={classes.formInput}
+                    value={flightTrainNumber}
+                    onChange={handleFlightTrainNumber}
+                  />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Grid className={classes.gridRow} container item xs={12} spacing={0}>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper elevation={0}>{langData.promocode[lang]}</Paper>
+              </Grid>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper>
+                  <Input
+                    disableUnderline={true}
+                    className={classes.formInput}
+                    value={promocode}
+                    onChange={handlePromocode}
+                    placeholder={langData.promocodePlaceholder[lang]}
+                  />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Grid className={classes.gridRow} container item xs={12} spacing={0}>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper elevation={0}>{langData.transportTypes[lang]}</Paper>
+              </Grid>
+              <Grid style={{ minWidth: '200px' }} item xs={6}>
+                <Paper elevation={0}>
+                  {order.vehicles || 'Standart'}
+                </Paper>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Button className={classes.buttonSave} variant="contained" color="primary">{langData.save[lang]}</Button>
+        </Container>
+        <Container className={classes.mapContainer}>
+          <Map width='100%' height='100%' marker={<MapMarker />} />
+        </Container>
+      </div>
+      <Button className={classes.buttonReject} variant="contained" color="primary">{langData.cancelRequest[lang]}</Button>
     </Container>
   );
 };

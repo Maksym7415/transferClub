@@ -13,7 +13,7 @@ const NavButtons = (props) => {
   const [lang, setLang] = useState(props.location.pathname.split('/')[1]);
 
   const handleUpcoming = () => props.history.push(`/${lang}/orders`);
-  const handlePast = () => props.history.push(`/${lang}/orders/past`);
+  const handlePast = () => props.history.push(`/${lang}/past_orders`);
   const handleNew = () => props.history.push(`/${lang}/order`);
 
   useEffect(() => {

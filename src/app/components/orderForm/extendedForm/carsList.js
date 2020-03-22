@@ -22,7 +22,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Econom</span>
+            <span>Economy</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -32,7 +32,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Standart</span>
+            <span>Comfort</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -42,7 +42,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Buiseness</span>
+            <span>Business</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -52,7 +52,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Van</span>
+            <span>Premium</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -62,7 +62,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Bus</span>
+            <span>VIP</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -72,7 +72,27 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Comfort</span>
+            <span>SUV</span>
+          </Paper>
+          <Paper className={classes.carsListItem}>
+            <Checkbox
+              name='7'
+              checked={props.checked['7'] || false}
+              onChange={props.handleChange}
+              // value="primary"
+              // inputProps={{ 'aria-label': 'primary checkbox' }}
+            />
+            <span>Van</span>
+          </Paper>
+          <Paper className={classes.carsListItem}>
+            <Checkbox
+              name='8'
+              checked={props.checked['8'] || false}
+              onChange={props.handleChange}
+              // value="primary"
+              // inputProps={{ 'aria-label': 'primary checkbox' }}
+            />
+            <span>Minibus</span>
           </Paper>
         </Container>
       </Container>

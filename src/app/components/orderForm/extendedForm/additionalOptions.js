@@ -20,8 +20,8 @@ const AdditionalOptions = (props) => {
   }, []);
 
   return (
-    <>
-      <h3>Additional options</h3>
+    <div className={classes.addOptionsContainer}>
+      <h3 style={{ fontSize: '16px', fontWeight: 'bold' }}>Additional options</h3>
       <div>
         <div>
           <FormControlLabel
@@ -36,7 +36,7 @@ const AdditionalOptions = (props) => {
               {...(props.checked.checkOfferPrice ? { timeout: 1000 } : { timeout: 1000 })}
             >
               <Paper elevation={4} className={classes.paper}>
-                <PriceOffer 
+                <PriceOffer
                   offerPrice={props.offerPrice}
                   offerPriceCurrency={props.offerPriceCurrency}
                   handleChangeOfferPriceCurrency={props.handleChangeOfferPriceCurrency}
@@ -63,7 +63,7 @@ const AdditionalOptions = (props) => {
               {...(props.checked.flightNumber ? { timeout: 1000 } : { timeout: 1000 })}
             >
               <Paper elevation={4} className={classes.paper}>
-                <Input 
+                <Input
                   style={{ width: '100%' }}
                   disableUnderline={true}
                   placeholder='EXAMPLE NR23435'
@@ -129,7 +129,7 @@ const AdditionalOptions = (props) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

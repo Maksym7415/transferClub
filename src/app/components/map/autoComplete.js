@@ -17,6 +17,7 @@ const AutoComplete = (props) => {
     <Autocomplete
       onLoad={handleOnLoad}
       onPlaceChanged={handlePlaceChanged}
+      style={{ width: '100%' }}
     >
       <Input fullWidth={props.fullWidth} value={props.value} onChange={props.onChange} disableUnderline={props.underline} placeholder={props.placeholder}/>
     </Autocomplete>

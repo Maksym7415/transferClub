@@ -11,11 +11,20 @@ export const useStyles = makeStyles((theme) => ({
   },
   formContainer: {
     display: 'flex',
-    flexDirection: 'column',
-    width: '60%',
+    flexDirection: 'row',
+    width: '100%',
+    flexWrap: 'wrap',
   },
   mapContainer: {
     width: '40%',
+    minWidth: '400px',
+    flexGrow: '1',
     height: '70vh',
+    float: 'right',
+  },
+  simpleForm: {
+    width: '50%',
+    minWidth: '400px',
+    flexGrow: '1',
   },
 }));

@@ -29,6 +29,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   adultsChildsContainer: {
     padding: '0',
+    width: '100%',
   },
   seatsListContainer: {
     display: 'flex',
@@ -72,7 +73,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   comment: {
     display: 'flex',
-    width: '100%',
+    width: '50%',
   },
   commentText: {
     width: '100%',
@@ -90,16 +91,21 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  contentItem: {
+    width: '50%',
+  },
   carsContainer: {
     display: 'flex',
     flexDirection: 'row',
     padding: '0',
+    width: '50%',
+    margin: '0',
   },
   carsContainerLabel: {
     maxWidth: '30%',
-    // display: 'flex',
-    // justifyContent: 'flex-start',
     padding: '0',
+    fontSize: '16px',
+    fontWeight: 'bold',
   },
   carsContainerList: {
     display: 'flex',
@@ -110,5 +116,8 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: 'transparent',
     borderRadius: '0',
     boxShadow: '0 0 0',
+  },
+  addOptionsContainer: {
+    width: '100%',
   },
 }));

@@ -7,7 +7,7 @@ import dive from '../../../functions/dive';
 import NavButtons from '../components/navButtons';
 import OrderCard from '../components/orderCard';
 import actionGetOrders from '../../../redux/actions/getOrders';
-import OrderDetails from '../components/orderDetails';
+import OffersCard from '../components/offersCard';
 
 const ViewOffers = (props) => {
   const classes = useStyles();
@@ -15,12 +15,24 @@ const ViewOffers = (props) => {
   const [orderId] = useState(props.location.pathname.split('/')[props.location.pathname.split('/').length - 1]);
   const order = useSelector((state) => !!(dive`${state}promiseReducer.getOrders.payload.data`) && dive`${state}promiseReducer.getOrders.payload.data`.filter((item) => item.id === +orderId)[0]); // checking for availeability of order in redux. if false running actionGetOrder
   const dispatch = useDispatch();
+  const confirmBidResponse = useSelector((state) => dive`${state}promiseReducer.confirmBid.payload`);
+  const [lang, setLang] = useState(props.location.pathname.split('/')[1]);
+
+  useEffect(() => {
+    setLang(props.location.pathname.split('/')[1]);
+  }, [props.location]);
 
   useEffect(() => {
     if (!order) {
       dispatch(actionGetOrders({ user_id: userPersonalData, order_status: ['Accepted'] }));
     }
   }, []);
+
+  useEffect(() => {
+    if (confirmBidResponse) {
+      props.history.push(`/${lang}/orders`);
+    }
+  }, [confirmBidResponse]);
 
   return (
     <Container className={classes.container}>
@@ -34,7 +46,14 @@ const ViewOffers = (props) => {
             transferDistance={450}
             textValue={true}
           />
-        : ''}
+        : ''
+      }
+      <Container className={classes.offersContainer}>
+        {order
+          ? order.bids.map((item) => <OffersCard key={item.id} orderId={order.id} bidId={item.id} car={item.partner_vehicle_id} carType={'Econom'} price={item.price} />)
+          : ''
+        }
+      </Container>
     </Container>
   );
 };

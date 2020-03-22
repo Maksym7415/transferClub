@@ -23,17 +23,18 @@ import actionDeleteData from '../../redux/actions/deleteData';
 const MakeOrder = (props) => {
   const classes = useStyles();
   const savedOrder = useSelector((state) => state.syncReducer.order);
+  const publicPageOrder = useSelector((state) => state.syncReducer.publicPageOrder);
   const [lang, setLang] = useState(props.location.pathname.split('/')[1]);
-  const [from, setFrom] = useState(savedOrder ? savedOrder.routes[0].address.title : '');
+  const [from, setFrom] = useState(savedOrder ? savedOrder.routes[0].address.title : publicPageOrder ? publicPageOrder.from : '');
   const [fromCoordinates, setFromCoordinates] = useState({
-    lat: savedOrder ? savedOrder.routes[0].address.latitude : '',
-    lng: savedOrder ? savedOrder.routes[0].address.longitude : '',
+    lat: savedOrder ? savedOrder.routes[0].address.latitude : publicPageOrder ? publicPageOrder.fromCoordinates.lat : '',
+    lng: savedOrder ? savedOrder.routes[0].address.longitude : publicPageOrder ? publicPageOrder.fromCoordinates.lng : '',
   });
   const [selectDuration, setSelectDuration] = useState('Duration');
-  const [to, setTo] = useState(savedOrder ? savedOrder.routes[1].address.title : '');
+  const [to, setTo] = useState(savedOrder ? savedOrder.routes[1].address.title : publicPageOrder ? publicPageOrder.to : '');
   const [toCoordinates, setToCoordinates] = useState({
-    lat: savedOrder ? savedOrder.routes[1].address.latitude : '',
-    lng: savedOrder ? savedOrder.routes[1].address.longitude : '',
+    lat: savedOrder ? savedOrder.routes[1].address.latitude : publicPageOrder ? publicPageOrder.toCoordinates.lat : '',
+    lng: savedOrder ? savedOrder.routes[1].address.longitude : publicPageOrder ? publicPageOrder.toCoordinates.lng : '',
   });
   const [autocompleteFrom, setAutocompleteFrom] = useState(null);
   const [autocompleteTo, setAutocompleteTo] = useState(null);
@@ -47,6 +48,8 @@ const MakeOrder = (props) => {
     4: false,
     5: false,
     6: false,
+    7: false,
+    8: false,
     checkOfferPrice: !!(savedOrder && savedOrder.price),
     checkShareTrip: !!(savedOrder && savedOrder.shareOrder === true),
     flightNumber: !!(savedOrder && savedOrder.flightTrainNumber),
@@ -177,33 +180,48 @@ const MakeOrder = (props) => {
     }
   }, [createOrderResponse]);
 
+  useEffect(() => {
+    if (publicPageOrder && publicPageOrder.car in checked) {
+      setChecked((prev) => ({ ...prev, [publicPageOrder.car]: true }));
+    }
+    if (publicPageOrder && publicPageOrder.price) {
+      setChecked((prev) => ({ ...prev, checkOfferPrice: true }));
+      setOfferPrice(publicPageOrder.price);
+    }
+  }, []);
+
   return (
     <Container className={classes.container}>
-      {console.log(checked.addReturnWay)}
       <CssBaseline />
       <Container className={classes.formContainer}>
-        <SimpleForm
-          from={from}
-          select={selectDuration}
-          to={to}
-          autoCompleteFrom={autocompleteFrom}
-          autoCompleteTo={autocompleteTo}
-          handleOnLoadAutocompliteFrom={handleOnLoadAutocompliteFrom}
-          handleOnLoadAutocompliteTo={handleOnLoadAutocompliteTo}
-          handlePlaceChangedFrom={handlePlaceChangedFrom}
-          handlePlaceChangedTo={handlePlaceChangedTo}
-          handleChangeSelect={handleChangeSelectDuration}
-          handleFrom={handleFrom}
-          handleTo={handleTo}
-        />
-        <TransferDate
-          selectedDate={selectedDate}
-          handleDateChange={handleDateChange}
-          backwardsSelectedDate={backwardsSelectedDate}
-          backwardsHandleDateChange={handleBackwardsDateChange}
-          checked={returnWay}
-          handleChangeCheckbox={handleChangeReturnWay}
-        />
+        <div className={classes.simpleForm}>
+          <SimpleForm
+            from={from}
+            select={selectDuration}
+            to={to}
+            autoCompleteFrom={autocompleteFrom}
+            autoCompleteTo={autocompleteTo}
+            handleOnLoadAutocompliteFrom={handleOnLoadAutocompliteFrom}
+            handleOnLoadAutocompliteTo={handleOnLoadAutocompliteTo}
+            handlePlaceChangedFrom={handlePlaceChangedFrom}
+            handlePlaceChangedTo={handlePlaceChangedTo}
+            handleChangeSelect={handleChangeSelectDuration}
+            handleFrom={handleFrom}
+            handleTo={handleTo}
+          />
+          <TransferDate
+            openReturnWay={returnWay}
+            selectedDate={selectedDate}
+            handleDateChange={handleDateChange}
+            backwardsSelectedDate={backwardsSelectedDate}
+            backwardsHandleDateChange={handleBackwardsDateChange}
+            checked={returnWay}
+            handleChangeCheckbox={handleChangeReturnWay}
+          />
+        </div>
+        <Container className={classes.mapContainer}>
+          <Map width='100%' height='100%' marker={<MapMarker />} />
+        </Container>
         <CarsList
           checked={checked}
           handleChange={handleChangeCheckbox}
@@ -251,9 +269,9 @@ const MakeOrder = (props) => {
           Create Order
         </Button>
       </Container>
-      <Container className={classes.mapContainer}>
+      {/* <Container className={classes.mapContainer}>
         <Map width='100%' height='100%' marker={<MapMarker />} />
-      </Container>
+      </Container> */}
       {/* <Directions /> */}
     </Container>
   );

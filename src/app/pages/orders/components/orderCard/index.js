@@ -31,7 +31,6 @@ const OrderCard = (props) => {
         variant="outlined"
         className={classes.orderItem}
       >
-              {console.log(props.location.pathname)}
         <CardContent>
           <Typography className={classes.orderId}>{langData.transferReq[lang]} #{props.orderId}</Typography>
           <Paper
@@ -55,8 +54,8 @@ const OrderCard = (props) => {
             </div>
           </Paper>
         </CardContent>
-        <CardActions>
-          {props.location.pathname === '/ru/orders'
+        <CardActions style={{ padding: '0' }}>
+          {props.location.pathname === `/${lang}/orders`
             ? <Button
                 className={classes.button}
                 variant="contained"

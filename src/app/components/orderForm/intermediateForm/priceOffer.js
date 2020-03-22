@@ -24,6 +24,7 @@ const PriceOffer = (props) => {
             value={props.offerPriceCurrency}
             onChange={props.handleChangeOfferPriceCurrency}
             disableUnderline={true}
+            style={{ minWidth: '80px' }}
           >
             <option value='euro'>EU</option>
             <option value='Usd'>USD</option>

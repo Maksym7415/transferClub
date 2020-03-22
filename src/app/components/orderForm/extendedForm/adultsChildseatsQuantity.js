@@ -22,7 +22,7 @@ const AdultsChildren = (props) => {
   return (
     <Container className={classes.adultsChildsContainer}>
       <Paper elevation={0} className={`adultsQuantity ${classes.adultsQuantity}`}>
-        <span>Adults</span>
+        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>Adults</span>
         <div className={classes.adultsButtons}>
           <Fab onClick={props.handleMinusAdultsQuantity} size='small' color="secondary">
               <RemoveIcon fontSize="small" />
@@ -37,9 +37,9 @@ const AdultsChildren = (props) => {
         elevation={0}
         className={classes.childSeatsContainer}
       >
-        <span>Child seats</span>
+        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>Child seats</span>
         <div className={classes.seatsListContainer}>
-          <Paper className={classes.childSeatsHeader} elevation={0} button onClick={props.handleOpenChildSeats}>
+          <Paper className={classes.childSeatsHeader} elevation={0} onClick={props.handleOpenChildSeats}>
             <Typography>Type of child seat</Typography>
             {props.openChildSeats ? <ExpandLess /> : <ExpandMore />}
           </Paper>
