@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import { withRouter } from 'react-router';
 import { useStyles } from './styles';
 import actionSaveOrder from '../../../redux/actions/publicPageOrder';
+import langData from './langData';
 
 
 const CarsTypes = (props) => {
@@ -37,37 +38,37 @@ const CarsTypes = (props) => {
         <div>
           <Card onClick={() => handleCheckCar('1')} className={classes.carsCard}>
             <img className={classes.carImage} alt='car' src='../../../../../images/car.png' />
-            <p style={{ margin: '0' }}>Economy</p>
+            <p style={{ margin: '0' }}>{langData.econom[lang]}</p>
           </Card>
           <Card onClick={() => handleCheckCar('2')} className={classes.carsCard}>
             <img className={classes.carImage} alt='car' src='../../../../../images/car.png' />
-            <p style={{ margin: '0' }}>Comfort</p>
+            <p style={{ margin: '0' }}>{langData.comfort[lang]}</p>
           </Card>
           <Card onClick={() => handleCheckCar('3')} className={classes.carsCard}>
             <img className={classes.carImage} alt='car' src='../../../../../images/car.png' />
-            <p style={{ margin: '0' }}>Business</p>
+            <p style={{ margin: '0' }}>{langData.business[lang]}</p>
           </Card>
           <Card onClick={() => handleCheckCar('8')} className={classes.carsCard}>
             <img className={classes.carImage} alt='car' src='../../../../../images/car.png' />
-            <p style={{ margin: '0' }}>Minibus</p>
+            <p style={{ margin: '0' }}>{langData.minibus[lang]}</p>
           </Card>
         </div>
         <div>
           <Card onClick={() => handleCheckCar('4')} className={classes.carsCard}>
             <img className={classes.carImage} alt='car' src='../../../../../images/car.png' />
-            <p style={{ margin: '0' }}>Premium</p>
+            <p style={{ margin: '0' }}>{langData.premium[lang]}</p>
           </Card>
           <Card onClick={() => handleCheckCar('5')} className={classes.carsCard}>
             <img className={classes.carImage} alt='car' src='../../../../../images/car.png' />
-            <p style={{ margin: '0' }}>VIP</p>
+            <p style={{ margin: '0' }}>{langData.vip[lang]}</p>
           </Card>
           <Card onClick={() => handleCheckCar('6')} className={classes.carsCard}>
             <img className={classes.carImage} alt='car' src='../../../../../images/car.png' />
-            <p style={{ margin: '0' }}>SUV</p>
+            <p style={{ margin: '0' }}>{langData.suv[lang]}</p>
           </Card>
           <Card onClick={() => handleCheckCar('7')} className={classes.carsCard}>
             <img className={classes.carImage} alt='car' src='../../../../../images/car.png' />
-            <p style={{ margin: '0' }}>Van</p>
+            <p style={{ margin: '0' }}>{langData.van[lang]}</p>
           </Card>
         </div>
       </Container>

@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     padding: '0',
+    marginBottom: '10px',
   },
   dataPickerContainer: {
     width: '100%',
@@ -17,6 +18,9 @@ export const useStyles = makeStyles((theme) => ({
     boxShadow: '0 0 0',
     justifyContent: 'flex-end',
     padding: '0',
+  },
+  dataPickerItem: {
+    marginRight: '20px',
   },
   returnWayContainer: {
     display: 'flex',
@@ -30,6 +34,7 @@ export const useStyles = makeStyles((theme) => ({
   adultsChildsContainer: {
     padding: '0',
     width: '100%',
+    marginBottom: '10px',
   },
   seatsListContainer: {
     display: 'flex',
@@ -49,6 +54,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     padding: '10px 0',
     justifyContent: 'space-between',
+    marginBottom: '10px',
   },
   childSeatsItem: {
     display: 'flex',
@@ -64,7 +70,7 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   meetingNamePromoCode: {
     display: 'flex',
@@ -100,6 +106,7 @@ export const useStyles = makeStyles((theme) => ({
     padding: '0',
     width: '50%',
     margin: '0',
+    marginBottom: '10px',
   },
   carsContainerLabel: {
     maxWidth: '30%',
@@ -118,6 +125,7 @@ export const useStyles = makeStyles((theme) => ({
     boxShadow: '0 0 0',
   },
   addOptionsContainer: {
-    width: '100%',
+    width: '50%',
+    marginBottom: '10px',
   },
 }));

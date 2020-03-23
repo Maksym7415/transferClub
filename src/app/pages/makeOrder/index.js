@@ -19,6 +19,7 @@ import actionCreateOrder from '../../redux/actions/createOrder';
 import dive from '../../functions/dive';
 import actionSaveOrder from '../../redux/actions/saveOrderData';
 import actionDeleteData from '../../redux/actions/deleteData';
+import langData from './langData';
 
 const MakeOrder = (props) => {
   const classes = useStyles();
@@ -210,6 +211,7 @@ const MakeOrder = (props) => {
             handleTo={handleTo}
           />
           <TransferDate
+            lang={lang}
             openReturnWay={returnWay}
             selectedDate={selectedDate}
             handleDateChange={handleDateChange}
@@ -223,10 +225,12 @@ const MakeOrder = (props) => {
           <Map width='100%' height='100%' marker={<MapMarker />} />
         </Container>
         <CarsList
+          lang={lang}
           checked={checked}
           handleChange={handleChangeCheckbox}
         />
         <AdultsChildren
+          lang={lang}
           adultsQuantity={adultsQuantity}
           openChildSeats={openChildSeats}
           handlePlusAdultsQuantity={handlePlusAdultsQuantity}
@@ -243,6 +247,7 @@ const MakeOrder = (props) => {
           handlePlusBoosterSeats={handlePlusBoosterSeats}
         />
         <AdditionalOptions
+          lang={lang}
           offerPrice={offerPrice}
           offerPriceCurrency={offerPriceCurrency}
           handleChangeOfferPriceCurrency={handleChangeOfferPriceCurrency}
@@ -257,21 +262,19 @@ const MakeOrder = (props) => {
           handlePromocode={handlePromocode}
         />
         <Comment
+          lang={lang}
           comment={comment}
           handleComment={handleChangeComment}
         />
-        <Contacts email={email} handleChangeEmail={handleChangeEmail} phone={phone} setPhone={setPhone} />
+        {/* <Contacts email={email} handleChangeEmail={handleChangeEmail} phone={phone} setPhone={setPhone} /> */}
         <Button
           variant='contained'
           color='primary'
           onClick={handleCreateOrder}
         >
-          Create Order
+          {langData.creteOrder[lang]}
         </Button>
       </Container>
-      {/* <Container className={classes.mapContainer}>
-        <Map width='100%' height='100%' marker={<MapMarker />} />
-      </Container> */}
       {/* <Directions /> */}
     </Container>
   );

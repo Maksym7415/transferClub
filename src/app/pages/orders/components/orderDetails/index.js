@@ -11,6 +11,7 @@ import dive from '../../../../functions/dive';
 import langData from './langData';
 import Map from '../../../../components/map/map';
 import MapMarker from '../../../../components/map/mapMarker';
+import actionRejectOffer from '../../../../redux/actions/changeOfferStatus';
 
 const OrderDetails = (props) => {
   const classes = useStyles();
@@ -19,6 +20,7 @@ const OrderDetails = (props) => {
   const [nameSign, setNameSign] = useState('');
   const [flightTrainNumber, setFlightTrainNumber] = useState('');
   const [promocode, setPromocode] = useState('');
+  const dispatch = useDispatch();
 
   const handleNameSign = (e) => setNameSign(e.target.value);
   const handleFlightTrainNumber = (e) => setFlightTrainNumber(e.target.value);

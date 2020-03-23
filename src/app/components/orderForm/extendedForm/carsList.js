@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import Container from '@material-ui/core/Container';
 import { useStyles } from './styles';
+import langData from './langData';
 
 const CarsList = (props) => {
   const classes = useStyles();
@@ -11,7 +12,7 @@ const CarsList = (props) => {
   return (
       <Container className={classes.carsContainer}>
         <Container className={classes.carsContainerLabel}>
-          Transport Types
+          {langData.transportTypes[props.lang]}
         </Container>
         <Container className={classes.carsContainerList}>
           <Paper className={classes.carsListItem}>
@@ -22,7 +23,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Economy</span>
+            <span>{langData.econom[props.lang]}</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -32,7 +33,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Comfort</span>
+            <span>{langData.comfort[props.lang]}</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -42,7 +43,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Business</span>
+            <span>{langData.business[props.lang]}</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -52,7 +53,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Premium</span>
+            <span>{langData.premium[props.lang]}</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -62,7 +63,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>VIP</span>
+            <span>{langData.vip[props.lang]}</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -72,7 +73,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>SUV</span>
+            <span>{langData.suv[props.lang]}</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -82,7 +83,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Van</span>
+            <span>{langData.van[props.lang]}</span>
           </Paper>
           <Paper className={classes.carsListItem}>
             <Checkbox
@@ -92,7 +93,7 @@ const CarsList = (props) => {
               // value="primary"
               // inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <span>Minibus</span>
+            <span>{langData.minibus[props.lang]}</span>
           </Paper>
         </Container>
       </Container>

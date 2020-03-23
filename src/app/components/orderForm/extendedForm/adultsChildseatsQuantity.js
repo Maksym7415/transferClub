@@ -15,6 +15,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import { useStyles } from './styles';
+import langData from './langData';
 
 const AdultsChildren = (props) => {
   const classes = useStyles();
@@ -22,7 +23,7 @@ const AdultsChildren = (props) => {
   return (
     <Container className={classes.adultsChildsContainer}>
       <Paper elevation={0} className={`adultsQuantity ${classes.adultsQuantity}`}>
-        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>Adults</span>
+        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>{langData.adults[props.lang]}</span>
         <div className={classes.adultsButtons}>
           <Fab onClick={props.handleMinusAdultsQuantity} size='small' color="secondary">
               <RemoveIcon fontSize="small" />
@@ -37,15 +38,15 @@ const AdultsChildren = (props) => {
         elevation={0}
         className={classes.childSeatsContainer}
       >
-        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>Child seats</span>
+        <span style={{ fontSize: '16px', fontWeight: 'bold' }}>{langData.childSeats[props.lang]}</span>
         <div className={classes.seatsListContainer}>
           <Paper className={classes.childSeatsHeader} elevation={0} onClick={props.handleOpenChildSeats}>
-            <Typography>Type of child seat</Typography>
-            {props.openChildSeats ? <ExpandLess /> : <ExpandMore />}
+            <Typography style={{ cursor: 'pointer' }}>{langData.childSeatsType[props.lang]}</Typography>
+            {props.openChildSeats ? <ExpandLess style={{ cursor: 'pointer' }} /> : <ExpandMore style={{ cursor: 'pointer' }} />}
           </Paper>
           <Collapse in={props.openChildSeats} timeout={props.openChildSeats ? 700 : 700} unmountOnExit>
               <Paper elevation={0} className={`adultsQuantity ${classes.childSeatsQuantity}`}>
-                <span>Infant carrier</span>
+                <span style={{ width: '30%' }}>Infant carrier</span>
                 <div>
                   <Fab
                     onClick={props.handleMinusInfantSeat}
@@ -65,7 +66,7 @@ const AdultsChildren = (props) => {
                 </div>
               </Paper>
               <Paper elevation={0} className={`adultsQuantity ${classes.childSeatsQuantity}`}>
-                <span>Convertable seats</span>
+                <span style={{ width: '30%' }}>Convertable seats</span>
                 <div>
                   <Fab
                     onClick={props.handleMinusConvertableSeat}
@@ -85,7 +86,7 @@ const AdultsChildren = (props) => {
                 </div>
               </Paper>
               <Paper elevation={0} className={`adultsQuantity ${classes.childSeatsQuantity}`}>
-                <span>Booster seats</span>
+                <span style={{ width: '30%' }}>Booster seats</span>
                 <div>
                   <Fab
                     onClick={props.handleMinusBoosterSeats}

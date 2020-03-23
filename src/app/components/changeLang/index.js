@@ -14,12 +14,11 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
 import langData from './langData';
-import history from '../../routing/history';
 import useStyles from './styles';
 
 const LangMenu = (props) => {
   const [openLang, setOpenLang] = useState(false);
-  const [lang, setLang] = useState(props.history.location.pathname.split('/')[1] || 'ru');
+  const [lang, setLang] = useState(props.location.pathname.split('/')[1] || 'ru');
   const classes = useStyles()();
 
   const handleOpenLang = (event) => {
@@ -28,7 +27,7 @@ const LangMenu = (props) => {
 
   const handleLanguage = (lang) => {
     setLang(lang);
-    const ln = props.history.location.pathname.split('/');
+    const ln = props.location.pathname.split('/');
     ln[1] = lang;
     props.history.push(ln.join('/'));
     setOpenLang(!openLang);
@@ -45,21 +44,17 @@ const LangMenu = (props) => {
         <img className={classes.langIcon} alt='languageIcon' src={langData.iconPath[lang]} />
         {openLang ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse className={classes.langMenu} in={openLang} timeout="auto" unmountOnExit>
-        <List className={classes.langMenuList} component="div" disablePadding>
-          <ListItem onClick={() => handleLanguage('ru')}>
-            <Paper className={classes.langMenuItem}>
+      <Collapse in={openLang} timeout="auto" unmountOnExit>
+          <Paper className={classes.langMenu}>
+            <Paper elevation={0} onClick={() => handleLanguage('ru')} className={classes.langMenuItem}>
               <img className={classes.langIcon} alt='languageIcon' src={langData.iconPath.ru} />
               <p>Russian</p>
             </Paper>
-          </ListItem>
-          <ListItem onClick={() => handleLanguage('en')} className={classes.langItem}>
-            <Paper className={classes.langMenuItem}>
+            <Paper elevation={0} onClick={() => handleLanguage('en')} className={classes.langMenuItem}>
               <img className={classes.langIcon} alt='languageIcon' src={langData.iconPath.en} />
               <p>English</p>
             </Paper>
-          </ListItem>
-        </List>
+          </Paper>
       </Collapse>
     </List>
     </div>

@@ -33,6 +33,7 @@ export const useStyles = makeStyles((theme) => ({
   button: {
     borderRadius: '20px',
     backgroundColor: '#41e310',
+    padding: '10px 20px',
   },
   price: {
     marginRight: '15%',

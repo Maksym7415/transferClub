@@ -5,4 +5,12 @@ export default () => makeStyles((theme) => ({
     paddingTop: '100px',
     width: '40%',
   },
+  bgImage: {
+    position: 'absolute',
+    width: '100vw',
+    height: '100vh',
+    left: '0',
+    top: '0',
+    oppacity: '0.1',
+  },
 }));

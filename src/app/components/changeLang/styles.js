@@ -5,10 +5,15 @@ export default () => makeStyles((theme) => ({
     position: 'relative',
   },
   langMenu: {
+    padding: '0 5px',
     position: 'absolute',
     right: '0',
     backgroundColor: 'white',
     borderRadius: '5px',
+    display: 'flex',
+    flexDirection: 'row',
+    minWidth: '180px',
+    justifyContent: 'space-between',
     // bottom: '0',
   },
   langMenuList: {
@@ -22,7 +27,7 @@ export default () => makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     cursor: 'pointer',
-    boxShadow: 'none',
+    // boxShadow: 'none',
   },
   langIcon: {
     width: '30px',

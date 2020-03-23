@@ -8,6 +8,7 @@ import NavButtons from '../components/navButtons';
 import OrderCard from '../components/orderCard';
 import actionGetOrders from '../../../redux/actions/getOrders';
 import OffersCard from '../components/offersCard';
+import actionDeleteData from '../../../redux/actions/deleteData';
 
 const ViewOffers = (props) => {
   const classes = useStyles();
@@ -30,6 +31,7 @@ const ViewOffers = (props) => {
 
   useEffect(() => {
     if (confirmBidResponse) {
+      dispatch(actionDeleteData('getOrders'));
       props.history.push(`/${lang}/orders`);
     }
   }, [confirmBidResponse]);

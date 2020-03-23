@@ -15,6 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { loadCSS } from 'fg-loadcss';
 import Icon from '@material-ui/core/Icon';
 import { useSelector, useDispatch } from 'react-redux';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import { useStyles } from './styles';
 import langData from './langData';
 import dive from '../../../functions/dive';
@@ -44,17 +45,17 @@ const PublicDrawer = (props) => {
             {loginData
               ? <>
                   <Avatar style={{ marginRight: '20px' }} alt='Remy Sharp' src='' />
-                  <span>Name</span>
+                  <div style={{ whiteSpace: 'pre-wrap', maxWidth: '45%' }}>{loginData.name}</div>
               </>
               : <span>{langData.signIn[props.lang]}</span>
             }
             <div className={classes.toolbarIcon}>
               {loginData
                 ? <IconButton style={{ padding: '0' }} onClick={() => dispatch(actionLogout())}>
-                  <Icon className='fas fa-sign-out-alt' />
+                  <Icon style={{ fontSize: '18px' }} className='fas fa-sign-out-alt' />
                 </IconButton>
                 : <IconButton style={{ padding: '0' }} onClick={() => props.history.push(`/${props.lang}/auth`)}>
-                  <Icon className='fas fa-sign-in-alt' />
+                  <Icon style={{ fontSize: '18px' }} className='fas fa-sign-in-alt' />
                 </IconButton>
               }
               <IconButton style={{ padding: '0' }} onClick={props.handleDrawerClose}>
@@ -65,27 +66,27 @@ const PublicDrawer = (props) => {
           <Divider/>
           <ListItem button component={Link} to={`/${props.lang}/order`}>
             <ListItemIcon>
-              <ShoppingCartIcon />
+              <AddToPhotosIcon />
             </ListItemIcon>
-            <ListItemText primary="Add order" />
+            <ListItemText primary={langData.addOrder[props.lang]} />
           </ListItem>
           <ListItem button component={Link} to={`/${props.lang}/orders`}>
             <ListItemIcon>
-              <ShoppingCartIcon />
+              <Icon style={{ fontSize: '20px' }} className='fas fa-random' />
             </ListItemIcon>
-            <ListItemText primary="Orders" />
+            <ListItemText primary={langData.myOrders[props.lang]} />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <PaymentIcon />
+            <Icon style={{ fontSize: '20px' }} className='fas fa-money-check-alt' />
             </ListItemIcon>
-            <ListItemText primary="Payment" />
+            <ListItemText primary={langData.myPayments[props.lang]} />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <PaymentIcon />
+            <Icon style={{ fontSize: '20px' }} className='fas fa-archive' />
             </ListItemIcon>
-            <ListItemText primary="Statistics" />
+            <ListItemText primary={langData.statistics[props.lang]} />
           </ListItem>
         </Drawer>
   );

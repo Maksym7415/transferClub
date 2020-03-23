@@ -21,6 +21,7 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: '1',
     height: '70vh',
     float: 'right',
+    marginBottom: '10px',
   },
   simpleForm: {
     width: '50%',

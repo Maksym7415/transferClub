@@ -7,12 +7,10 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   button: {
-    backgroundColor: '#fa730c',
     borderRadius: '20px',
     marginRight: '20px',
   },
   buttonPayment: {
-    backgroundColor: '#fa730c',
     borderRadius: '20px',
     marginLeft: 'auto',
   },

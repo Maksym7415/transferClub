@@ -6,7 +6,6 @@ import { useStyles } from './styles';
 import dive from '../../../functions/dive';
 import NavButtons from '../components/navButtons';
 import OrderCard from '../components/orderCard';
-import OrderDetails from '../components/orderDetails';
 import actionGetOrders from '../../../redux/actions/getOrders';
 
 const WaitingPayment = (props) => {
@@ -33,6 +32,7 @@ const WaitingPayment = (props) => {
           startAdress={order.route_points[0].address}
           finishAdress={order.route_points[1].address}
           transferDate={order.timestamp}
+          price={order.price}
           transferDistance={450}
           // textValue={!!order.bids.length}
           // getBids={() => handleGetBids(order.id)}

@@ -30,6 +30,7 @@ const NavButtons = (props) => {
         <Button
           className={classes.button}
           variant="contained"
+          color='primary'
           onClick={handleUpcoming}
         >
           {langData.upcoming[lang]}
@@ -37,6 +38,7 @@ const NavButtons = (props) => {
         <Button
           className={classes.button}
           variant="contained"
+          color='primary'
           onClick={handlePast}
         >
           {langData.past[lang]}
@@ -44,6 +46,7 @@ const NavButtons = (props) => {
         <Button
           className={classes.button}
           variant="contained"
+          color='primary'
           onClick={handleNew}
         >
           {langData.new[lang]}
@@ -52,6 +55,7 @@ const NavButtons = (props) => {
           className={classes.buttonPayment}
           variant="contained"
           onClick={handleWaitingPayment}
+          color='primary'
         >
           {langData.waitingPayment[lang]}
         </Button>

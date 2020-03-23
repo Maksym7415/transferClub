@@ -10,7 +10,7 @@ import { withRouter } from 'react-router';
 import WifiIcon from '@material-ui/icons/Wifi';
 import langData from './langData';
 import { useStyles } from './styles';
-import actionConfirmBid from '../../../../redux/actions/confirmOffer';
+import actionConfirmBid from '../../../../redux/actions/changeOfferStatus';
 
 
 const OffersCard = (props) => {

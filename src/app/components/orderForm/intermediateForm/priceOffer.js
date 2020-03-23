@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Container from '@material-ui/core/Container';
+import { withRouter } from 'react-router';
 import { useStyles } from './styles';
+import langData from './langData';
 
 const PriceOffer = (props) => {
   const classes = useStyles();
-  // const [price, setPrice] = useState('');
-  // const [currency, setCurrency] = useState();
+  const [lang, setLang] = useState(props.location.pathname.split('/')[1]);
 
-  // const handleChangeCurrency = (e) => setCurrency(e.target.value);
-  // const handlePrice = (e) => setPrice(e.target.value);
+  useEffect(() => {
+    setLang(props.location.pathname.split('/')[1]);
+  }, [props.location]);
+
 
   return (
     <>
@@ -29,11 +32,11 @@ const PriceOffer = (props) => {
             <option value='euro'>EU</option>
             <option value='Usd'>USD</option>
           </NativeSelect>
-          <Input fullWidth={true} value={props.offerPrice} onChange={props.handleOfferPrice} disableUnderline={true} placeholder='Offer your price'/>
+          <Input fullWidth={true} value={props.offerPrice} onChange={props.handleOfferPrice} disableUnderline={true} placeholder={langData.offerPrice[lang]}/>
         </Paper>
       </Container>
     </>
   );
 };
 
-export default PriceOffer;
+export default withRouter(PriceOffer);

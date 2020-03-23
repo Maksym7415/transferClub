@@ -32,7 +32,10 @@ const OrderCard = (props) => {
         className={classes.orderItem}
       >
         <CardContent>
-          <Typography className={classes.orderId}>{langData.transferReq[lang]} #{props.orderId}</Typography>
+          <div className={classes.idPriceHeader}>
+            <Typography className={classes.orderId}>{langData.transferReq[lang]} #{props.orderId}</Typography>
+            {props.location.pathname === `/${lang}/waiting_payment` ? <span className={classes.price}>{props.price} $</span> : ''}
+          </div>
           <Paper
             elevation={0}
             className={`address ${classes.address}`}
@@ -59,6 +62,7 @@ const OrderCard = (props) => {
             ? <Button
                 className={classes.button}
                 variant="contained"
+                color='primary'
                 onClick={props.getBids}
               >
                 {props.textValue ? langData.viewOffers[lang] : langData.details[lang]}
@@ -75,6 +79,7 @@ const OrderCard = (props) => {
                     <Button
                       className={classes.button}
                       variant="contained"
+                      style={{ backgroundColor: '#41e310' }}
                       onClick={props.pay}
                     >
                       {langData.pay[lang]}
@@ -94,7 +99,7 @@ const OrderCard = (props) => {
                 {openCollapse ? <ExpandLess /> : <ExpandMore />}
               </Paper>
               <Collapse in={openCollapse} timeout={openCollapse ? 1000 : 1000} unmountOnExit>
-                <OrderDetails />
+                <OrderDetails orderId={props.orderId} />
               </Collapse>
             </div>
           }

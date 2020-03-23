@@ -89,7 +89,7 @@ const Public = (props) => {
             price={offerPrice}
           />
         </Collapse>
-      <Button style={{ backgroundColor: '#fcba03' }} variant='outlined' onClick={handleGetOffers}>Get Offers</Button>
+      <Button color={'primary'} variant='contained' onClick={handleGetOffers}>Get Offers</Button>
       </Container>
     </>
   );

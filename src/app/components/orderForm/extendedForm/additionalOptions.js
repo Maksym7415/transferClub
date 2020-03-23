@@ -8,6 +8,7 @@ import Input from '@material-ui/core/Input';
 import Icon from '@material-ui/core/Icon';
 import { useStyles } from './styles';
 import PriceOffer from '../intermediateForm/priceOffer';
+import langData from './langData';
 
 const AdditionalOptions = (props) => {
   const classes = useStyles();
@@ -21,12 +22,12 @@ const AdditionalOptions = (props) => {
 
   return (
     <div className={classes.addOptionsContainer}>
-      <h3 style={{ fontSize: '16px', fontWeight: 'bold' }}>Additional options</h3>
+      <h3 style={{ fontSize: '16px', fontWeight: 'bold' }}>{langData.additionalOptions[props.lang]}</h3>
       <div>
         <div>
           <FormControlLabel
               control={<Checkbox name='checkOfferPrice' onChange={props.handleChangeCheckbox} checked={props.checked.checkOfferPrice || false} />}
-              label='Offer your price'
+              label={langData.offerPrice[props.lang]}
             />
           <div>
             <Grow
@@ -48,12 +49,12 @@ const AdditionalOptions = (props) => {
         </div>
         <FormControlLabel
             control={<Checkbox name='checkShareTrip' onChange={props.handleChangeCheckbox} checked={props.checked.checkShareTrip || false} />}
-            label='I want to share my trip'
+            label={langData.shareTrip[props.lang]}
           />
         <div>
           <FormControlLabel
               control={<Checkbox name='flightNumber' onChange={props.handleChangeCheckbox} checked={props.checked.flightNumber || false} />}
-              label='Flight or train number'
+              label={langData.flightNum[props.lang]}
             />
           <div>
             <Grow
@@ -66,7 +67,7 @@ const AdditionalOptions = (props) => {
                 <Input
                   style={{ width: '100%' }}
                   disableUnderline={true}
-                  placeholder='EXAMPLE NR23435'
+                  placeholder={langData.flightNumPlaceholder[props.lang]}
                   value={props.flightTrainNumber}
                   onChange={props.handleFlightTrainNumber}
                 />
@@ -76,7 +77,7 @@ const AdditionalOptions = (props) => {
           <div>
             <FormControlLabel
                 control={<Checkbox name='meetingName' onChange={props.handleChangeCheckbox} checked={props.checked.meetingName || false} />}
-                label='Meeting with a name sign is required'
+                label={langData.nameSign[props.lang]}
               />
             <div>
               <Grow
@@ -91,7 +92,7 @@ const AdditionalOptions = (props) => {
                     <Input
                       style={{ width: '100%' }}
                       disableUnderline={true}
-                      placeholder='Please fill in passengers name'
+                      placeholder={langData.nameSignPlaceholder[props.lang]}
                       value={props.nameSign}
                       onChange={props.handleNameSign}
                     />
@@ -102,7 +103,7 @@ const AdditionalOptions = (props) => {
             <div>
               <FormControlLabel
                 control={<Checkbox name='promoCode' onChange={props.handleChangeCheckbox} checked={props.checked.promoCode || false} />}
-                label='Promocode'
+                label={langData.promocode[props.lang]}
               />
                 <div>
                   <Grow
@@ -117,7 +118,7 @@ const AdditionalOptions = (props) => {
                         <Input
                           style={{ width: '100%' }}
                           disableUnderline={true}
-                          placeholder='Enter promo code'
+                          placeholder={langData.promocodePlaceholder[props.lang]}
                           value={props.promocode}
                           onChange={props.handlePromocode}
                         />

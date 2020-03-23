@@ -27,5 +27,4 @@ export default {
     en: 'hours',
     ru: 'часов',
   },
-
 };

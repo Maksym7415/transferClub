@@ -8,6 +8,16 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: '20px',
     borderRadius: '10px',
   },
+  idPriceHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  price: {
+    marginLeft: 'auto',
+    color: '#02f71f',
+    fontSize: '16px',
+    fontWeight: 'bold',
+  },
   address: {
     display: 'flex',
     flexDirection: 'row',
@@ -18,7 +28,6 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '15px',
   },
   button: {
-    backgroundColor: '#fa730c',
     borderRadius: '20px',
     margin: '0 0 0 auto',
   },
