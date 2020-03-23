@@ -63,18 +63,39 @@ const OrderCard = (props) => {
               >
                 {props.textValue ? langData.viewOffers[lang] : langData.details[lang]}
               </Button>
-            : <div className={classes.collapseContainer}>
-                <Paper
-                  elevation={0}
-                  className={classes.orderDetailsCollapse}
-                  onClick={handleOpenCollapse}
-                >
-                  <Typography>{langData.orderDetails[lang]}</Typography>
-                  {openCollapse ? <ExpandLess /> : <ExpandMore />}
-                </Paper>
-                <Collapse in={openCollapse} timeout={openCollapse ? 1000 : 1000} unmountOnExit>
-                  <OrderDetails />
-                </Collapse>
+            : props.location.pathname === `/${lang}/waiting_payment`
+              ? <div className={classes.collapseContainer}>
+                  <Paper
+                    elevation={0}
+                    className={classes.orderDetailsCollapse}
+                    onClick={handleOpenCollapse}
+                  >
+                    <Typography>{langData.orderDetails[lang]}</Typography>
+                    {openCollapse ? <ExpandLess /> : <ExpandMore />}
+                    <Button
+                      className={classes.button}
+                      variant="contained"
+                      onClick={props.pay}
+                    >
+                      {langData.pay[lang]}
+                    </Button>
+                  </Paper>
+                  <Collapse in={openCollapse} timeout={openCollapse ? 1000 : 1000} unmountOnExit>
+                    <OrderDetails />
+                  </Collapse>
+                </div>
+              : <div className={classes.collapseContainer}>
+              <Paper
+                elevation={0}
+                className={classes.orderDetailsCollapse}
+                onClick={handleOpenCollapse}
+              >
+                <Typography>{langData.orderDetails[lang]}</Typography>
+                {openCollapse ? <ExpandLess /> : <ExpandMore />}
+              </Paper>
+              <Collapse in={openCollapse} timeout={openCollapse ? 1000 : 1000} unmountOnExit>
+                <OrderDetails />
+              </Collapse>
             </div>
           }
         </CardActions>

@@ -1,14 +1,18 @@
 export default {
   upcoming: {
     en: 'UPCOMING',
-    ru: 'ПРЕДСТОЯЩИЕ'
+    ru: 'ПРЕДСТОЯЩИЕ',
   },
   past: {
     en: 'PAST',
-    ru: 'ЗАВЕРШЕННЫЕ'
+    ru: 'ЗАВЕРШЕННЫЕ',
   },
   new: {
     en: 'NEW',
-    ru: 'НОВЫЙ'
-  }
-}
+    ru: 'НОВЫЙ',
+  },
+  waitingPayment: {
+    en: 'WAITING FOR PAYMENT',
+    ru: 'ОЖИДИЮТ ОПЛАТЫ',
+  },
+};

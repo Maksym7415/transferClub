@@ -15,6 +15,7 @@ const NavButtons = (props) => {
   const handleUpcoming = () => props.history.push(`/${lang}/orders`);
   const handlePast = () => props.history.push(`/${lang}/past_orders`);
   const handleNew = () => props.history.push(`/${lang}/order`);
+  const handleWaitingPayment = () => props.history.push(`/${lang}/waiting_payment`);
 
   useEffect(() => {
     setLang(props.location.pathname.split('/')[1]);
@@ -46,6 +47,13 @@ const NavButtons = (props) => {
           onClick={handleNew}
         >
           {langData.new[lang]}
+        </Button>
+        <Button
+          className={classes.buttonPayment}
+          variant="contained"
+          onClick={handleWaitingPayment}
+        >
+          {langData.waitingPayment[lang]}
         </Button>
       </Paper>
     </>

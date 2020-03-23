@@ -11,6 +11,7 @@ import Authorization from '../pages/auth';
 import Orders from '../pages/orders/upcoming';
 import ViewOffers from '../pages/orders/viewOffers';
 import PastOrders from '../pages/orders/past';
+import WaitingPayment from '../pages/orders/waitingPayment';
 
 function Router(props) {
   return (
@@ -29,6 +30,7 @@ function Router(props) {
                 <Route component = {Orders} exact path = '/:lang/orders'/>
                 <Route component = {ViewOffers} exact path = '/:lang/orders/:id'/>
                 <Route component = {PastOrders} exact path = '/:lang/past_orders'/>
+                <Route component = {WaitingPayment} exact path = '/:lang/waiting_payment'/>
                 <Route component = {() => <div>not found</div>} />
               </Switch>
             </div>

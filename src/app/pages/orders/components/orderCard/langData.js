@@ -19,4 +19,8 @@ export default {
     en: 'Order details',
     ru: 'Детали заказа',
   },
+  pay: {
+    en: 'PAY',
+    ru: 'ОПЛАТИТЬ',
+  },
 };
