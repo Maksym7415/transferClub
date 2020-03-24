@@ -60,11 +60,9 @@ const MakeOrder = (props) => {
   const [adultsQuantity, setQuantity] = useState(savedOrder ? savedOrder.adults : 1);
   const [openChildSeats, setOpenChildSeats] = useState(false);
   const [comment, setComment] = useState(savedOrder ? savedOrder.comment : '');
-  const [phone, setPhone] = useState();
   const createOrderResponse = useSelector((state) => dive`${state}promiseReducer.createOrder.payload.data`);
   const userPersonalData = useSelector((state) => dive`${state}syncReducer.token.payload.sub`);
   const dispatch = useDispatch();
-  const [email, setEmail] = useState(userPersonalData ? userPersonalData.email : '');
   const [offerPrice, setOfferPrice] = useState(savedOrder && savedOrder.price ? savedOrder.price : '');
   const [offerPriceCurrency, setOfferPriceCurrency] = useState('Usd');
   const [flightTrainNumber, setFlightTrainNumber] = useState(savedOrder && savedOrder.flightTrainNumber ? savedOrder.flightTrainNumber : '');
@@ -73,6 +71,7 @@ const MakeOrder = (props) => {
   const [infantSeatsQuantity, setInfantSeatsQuantity] = useState(savedOrder ? savedOrder.childrenSeats.smallSeat : 0);
   const [convertableQuantity, setConvertableQuantity] = useState(savedOrder ? savedOrder.childrenSeats.middleSeat : 0);
   const [boosterQuantity, setBoosterQuantity] = useState(savedOrder ? savedOrder.childrenSeats.largeSeat : 0);
+  const [carTypes, setCatTypes] = useState([]);
 
   const handleOnLoadAutocompliteFrom = (e) => setAutocompleteFrom(e);
   const handleOnLoadAutocompliteTo = (e) => setAutocompleteTo(e);
@@ -102,6 +101,9 @@ const MakeOrder = (props) => {
   const handleChangeCheckbox = (event) => {
     const item = event.target.name;
     setChecked((prev) => ({ ...prev, [item]: event.target.checked }));
+    if (event.target.checked === true && ['1', '2', '3', '4', '5', '6', '7', '8'].includes(item)) {
+      setCatTypes((prev) => [...prev, +item]);
+    }
   };
   const handlePlusAdultsQuantity = () => setQuantity((prev) => (prev < 4 ? prev + 1 : 4));
   const handleMinusAdultsQuantity = () => setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
@@ -113,7 +115,6 @@ const MakeOrder = (props) => {
   const handleOpenChildSeats = () => setOpenChildSeats(!openChildSeats);
   const handlePlusBoosterSeats = () => setBoosterQuantity((prev) => (prev < 3 ? prev + 1 : 3));
   const handleChangeComment = (e) => setComment(e.target.value);
-  const handleChangeEmail = (e) => setEmail(e.target.value);
   const handleChangeOfferPriceCurrency = (e) => setOfferPriceCurrency(e.target.value);
   const handleOfferPrice = (e) => setOfferPrice(+e.target.value);
   const handleFlightTrainNumber = (e) => setFlightTrainNumber(e.target.value);
@@ -157,9 +158,7 @@ const MakeOrder = (props) => {
           },
         },
       ],
-      vehicle_types: [
-        1,
-      ],
+      vehicle_types: [...new Set(carTypes)],
     };
     if (userPersonalData) {
       dispatch(actionCreateOrder({ user_id: userPersonalData.id_user, ...order }));
@@ -193,7 +192,7 @@ const MakeOrder = (props) => {
 
   return (
     <Container className={classes.container}>
-      {console.log(selectedDate)}
+      {console.log(carTypes)}
       <CssBaseline />
       <Container className={classes.formContainer}>
         <div className={classes.simpleForm}>

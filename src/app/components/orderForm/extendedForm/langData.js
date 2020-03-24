@@ -77,7 +77,7 @@ export default {
   },
   childSeatsType: {
     en: 'Type of child seat',
-    ru: 'Тип детского креслв',
+    ru: 'Тип детского кресла',
   },
   transferDate: {
     en: 'Transfer date',
