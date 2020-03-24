@@ -123,9 +123,9 @@ const MakeOrder = (props) => {
 
   const handleCreateOrder = () => {
     const order = {
-      timestamp: Date.now(selectedDate),
+      timestamp: Date.parse(selectedDate),
       backwardsRoute: returnWay,
-      backwardsTimestamp: checked.addReturnWay && Date.now(backwardsSelectedDate),
+      backwardsTimestamp: checked.addReturnWay && Date.parse(backwardsSelectedDate),
       adults: adultsQuantity,
       distance: 500,
       childrenSeats: {
@@ -193,6 +193,7 @@ const MakeOrder = (props) => {
 
   return (
     <Container className={classes.container}>
+      {console.log(selectedDate)}
       <CssBaseline />
       <Container className={classes.formContainer}>
         <div className={classes.simpleForm}>

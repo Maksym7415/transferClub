@@ -8,16 +8,19 @@ import Rating from '@material-ui/lab/Rating';
 import { useStyles } from './styles';
 import dive from '../../../../functions/dive';
 import langData from './langData';
-import actionRejectOffer from '../../../../redux/actions/changeOfferStatus';
+import actionRateOrder from '../../../../redux/actions/rateOrder';
 
 const OrderRating = (props) => {
   const classes = useStyles();
   const [lang, setLang] = useState(props.location.pathname.split('/')[1]);
-  const [order] = useSelector((state) => dive`${state}promiseReducer.getOrders.payload.data`);
+  // const [order] = useSelector((state) => dive`${state}promiseReducer..payload.data`);
   const [rating, setRating] = useState(4);
   const dispatch = useDispatch();
 
-  const handleRating = (e) => setRating(e.target.value);
+  const handleRating = (e) => {
+    setRating(e.target.value);
+    dispatch(actionRateOrder({ mark: e.target.value, comment: 'string', order_id: props.orderId }));
+  };
 
 
   useEffect(() => {
@@ -30,9 +33,7 @@ const OrderRating = (props) => {
       <Rating
           name="simple-controlled"
           value={rating}
-          onChange={(event, newValue) => {
-            setRating(newValue);
-          }}
+          onChange={handleRating}
         />
     </Container>
   );

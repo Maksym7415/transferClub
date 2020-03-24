@@ -44,7 +44,7 @@ const OrderCard = (props) => {
             <div className='address-label'>A</div>
             <div>
               <p>{props.startAdress}</p>
-              <span className='order-date'>{props.transferDate}</span>
+              <span className='order-date'>{new Date(+props.transferDate).toString()}</span>
             </div>
           </Paper>
           <Paper
@@ -91,7 +91,7 @@ const OrderCard = (props) => {
                   </Collapse>
                 </div>
               : props.location.pathname === `/${lang}/past_orders`
-                ? <RateOrder/>
+                ? <RateOrder orderId={props.orderId}/>
                 : <div className={classes.collapseContainer}>
                     <Paper
                       elevation={0}
