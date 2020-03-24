@@ -12,6 +12,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import langData from './langData';
 import { useStyles } from './styles';
 import OrderDetails from '../orderDetails';
+import RateOrder from '../rateOrder';
 
 
 const OrderCard = (props) => {
@@ -89,19 +90,21 @@ const OrderCard = (props) => {
                     <OrderDetails />
                   </Collapse>
                 </div>
-              : <div className={classes.collapseContainer}>
-              <Paper
-                elevation={0}
-                className={classes.orderDetailsCollapse}
-                onClick={handleOpenCollapse}
-              >
-                <Typography>{langData.orderDetails[lang]}</Typography>
-                {openCollapse ? <ExpandLess /> : <ExpandMore />}
-              </Paper>
-              <Collapse in={openCollapse} timeout={openCollapse ? 1000 : 1000} unmountOnExit>
-                <OrderDetails orderId={props.orderId} />
-              </Collapse>
-            </div>
+              : props.location.pathname === `/${lang}/past_orders`
+                ? <RateOrder/>
+                : <div className={classes.collapseContainer}>
+                    <Paper
+                      elevation={0}
+                      className={classes.orderDetailsCollapse}
+                      onClick={handleOpenCollapse}
+                    >
+                      <Typography>{langData.orderDetails[lang]}</Typography>
+                      {openCollapse ? <ExpandLess /> : <ExpandMore />}
+                    </Paper>
+                    <Collapse in={openCollapse} timeout={openCollapse ? 1000 : 1000} unmountOnExit>
+                      <OrderDetails orderId={props.orderId} />
+                    </Collapse>
+                  </div>
           }
         </CardActions>
       </Card>
