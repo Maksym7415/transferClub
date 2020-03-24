@@ -11,17 +11,13 @@ export default {
     en: 'Flight or train number',
     ru: 'Номер самолета или поезда',
   },
-  promocode: {
-    en: 'Promocode',
-    ru: 'Промокод',
+  clientPrice: {
+    en: 'Client price',
+    ru: 'Цена клиента',
   },
   transportTypes: {
     en: 'Transport types',
     ru: 'Типы транспорта',
-  },
-  save: {
-    en: 'Save',
-    ru: 'Сохранить',
   },
   cancelRequest: {
     en: 'Cancel request',

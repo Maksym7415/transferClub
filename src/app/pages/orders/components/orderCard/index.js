@@ -87,7 +87,7 @@ const OrderCard = (props) => {
                     </Button>
                   </Paper>
                   <Collapse in={openCollapse} timeout={openCollapse ? 1000 : 1000} unmountOnExit>
-                    <OrderDetails />
+                    <OrderDetails orderId={props.orderId} />
                   </Collapse>
                 </div>
               : props.location.pathname === `/${lang}/past_orders`

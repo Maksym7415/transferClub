@@ -42,17 +42,17 @@ const ViewOffers = (props) => {
       {order
         ? <OrderCard
             orderId={order.id}
-            startAdress={order.route_points[0].address}
-            finishAdress={order.route_points[1].address}
+            startAdress={order.route_points[1].address}
+            finishAdress={order.route_points[0].address}
             transferDate={order.timestamp}
-            transferDistance={450}
+            transferDistance={order.distance}
             textValue={true}
           />
         : ''
       }
       <Container className={classes.offersContainer}>
         {order
-          ? order.bids.map((item) => <OffersCard key={item.id} orderId={order.id} bidId={item.id} car={item.partner_vehicle_id} carType={'Econom'} price={item.price} />)
+          ? order.bids.map((item) => <OffersCard key={item.id} orderId={order.id} item={item} />)
           : ''
         }
       </Container>

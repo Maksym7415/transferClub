@@ -40,4 +40,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '17px',
     fontWeight: 'bold',
   },
+  iconsContainer: {
+    flexDirection: 'row'
+  }
 }));

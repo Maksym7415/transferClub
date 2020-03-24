@@ -16,7 +16,7 @@ import actionRejectOffer from '../../../../redux/actions/changeOfferStatus';
 const OrderDetails = (props) => {
   const classes = useStyles();
   const [lang, setLang] = useState(props.location.pathname.split('/')[1]);
-  const [order] = useSelector((state) => dive`${state}promiseReducer.getOrders.payload.data`);
+  const order = useSelector((state) => dive`${state}promiseReducer.getOrders.payload.data`).filter((item) => item.id === +props.orderId)[0];
   const [nameSign, setNameSign] = useState('');
   const [flightTrainNumber, setFlightTrainNumber] = useState('');
   const [promocode, setPromocode] = useState('');
@@ -43,54 +43,30 @@ const OrderDetails = (props) => {
                 <Paper elevation={0}>{order && order.adults}</Paper>
               </Grid>
             </Grid>
-            <Grid className={classes.gridRow} container item xs={12} spacing={0}>
+            {!!order.nameSign && <Grid className={classes.gridRow} container item xs={12} spacing={0}>
               <Grid style={{ minWidth: '200px' }} item xs={6}>
                 <Paper elevation={0}>{langData.nameSign[lang]}</Paper>
               </Grid>
               <Grid style={{ minWidth: '200px' }} item xs={6}>
-                <Paper>
-                  <Input
-                    disableUnderline={true}
-                    className={classes.formInput}
-                    value={nameSign}
-                    placeholder={langData.passengersName[lang]}
-                    onChange={handleNameSign}
-                  />
-                </Paper>
+                <Paper elevation={0}>{order && order.nameSign}</Paper>
               </Grid>
-            </Grid>
-            <Grid className={classes.gridRow} container item xs={12} spacing={0}>
+            </Grid>}
+            {!!order.flight_train_number && <Grid className={classes.gridRow} container item xs={12} spacing={0}>
               <Grid style={{ minWidth: '200px' }} item xs={6}>
                 <Paper elevation={0}>{langData.flightTrainNumber[lang]}</Paper>
               </Grid>
               <Grid style={{ minWidth: '200px' }} item xs={6}>
-                <Paper>
-                  <Input
-                    placeholder={langData.flightTrainNumberPlaceholder[lang]}
-                    disableUnderline={true}
-                    className={classes.formInput}
-                    value={flightTrainNumber}
-                    onChange={handleFlightTrainNumber}
-                  />
-                </Paper>
+                <Paper elevation={0}>{order && order.flight_train_number}</Paper>
               </Grid>
-            </Grid>
-            <Grid className={classes.gridRow} container item xs={12} spacing={0}>
+            </Grid>}
+            {!!order.price && <Grid className={classes.gridRow} container item xs={12} spacing={0}>
               <Grid style={{ minWidth: '200px' }} item xs={6}>
-                <Paper elevation={0}>{langData.promocode[lang]}</Paper>
+                <Paper elevation={0}>{langData.clientPrice[lang]}</Paper>
               </Grid>
               <Grid style={{ minWidth: '200px' }} item xs={6}>
-                <Paper>
-                  <Input
-                    disableUnderline={true}
-                    className={classes.formInput}
-                    value={promocode}
-                    onChange={handlePromocode}
-                    placeholder={langData.promocodePlaceholder[lang]}
-                  />
-                </Paper>
+                <Paper elevation={0}>{order && order.price}$</Paper>
               </Grid>
-            </Grid>
+            </Grid>}
             <Grid className={classes.gridRow} container item xs={12} spacing={0}>
               <Grid style={{ minWidth: '200px' }} item xs={6}>
                 <Paper elevation={0}>{langData.transportTypes[lang]}</Paper>
@@ -102,7 +78,6 @@ const OrderDetails = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          <Button className={classes.buttonSave} variant="contained" color="primary">{langData.save[lang]}</Button>
         </Container>
         <Container className={classes.mapContainer}>
           <Map width='100%' height='100%' marker={<MapMarker />} />

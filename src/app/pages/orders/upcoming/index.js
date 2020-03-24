@@ -36,10 +36,10 @@ const Orders = (props) => {
       {orders ? orders.map((order) => <OrderCard
           key={order.id}
           orderId={order.id}
-          startAdress={order.route_points[0].address}
-          finishAdress={order.route_points[1].address}
+          startAdress={order.route_points[1].address}
+          finishAdress={order.route_points[0].address}
           transferDate={order.timestamp}
-          transferDistance={450}
+          transferDistance={order.distance}
           textValue={!!order.bids.length}
           getBids={() => handleGetBids(order.id)}
         />)
