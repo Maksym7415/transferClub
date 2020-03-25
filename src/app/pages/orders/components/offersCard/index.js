@@ -14,7 +14,7 @@ import DnsIcon from '@material-ui/icons/Dns';
 import langData from './langData';
 import { useStyles } from './styles';
 import actionConfirmBid from '../../../../redux/actions/changeOfferStatus';
-import dive from '../../../../functions/dive'
+import dive from '../../../../functions/dive';
 
 
 const OffersCard = (props) => {
@@ -47,7 +47,7 @@ const OffersCard = (props) => {
         </CardContent>
         <CardActions className={classes.buttonPriceContainer}>
           <Paper className={classes.price} elevation={0}>{props.item.price}$</Paper>
-          <Button onClick={() => handleConfirm(props.item.bidId, props.orderId)} className={classes.button} variant="contained" color="primary">{langData.book[lang]}</Button>
+          <Button onClick={() => handleConfirm(props.item.id, props.orderId)} className={classes.button} variant="contained" color="primary">{langData.book[lang]}</Button>
         </CardActions>
       </Card>
     </>
