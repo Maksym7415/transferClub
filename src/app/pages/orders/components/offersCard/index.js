@@ -14,6 +14,7 @@ import DnsIcon from '@material-ui/icons/Dns';
 import langData from './langData';
 import { useStyles } from './styles';
 import actionConfirmBid from '../../../../redux/actions/changeOfferStatus';
+import dive from '../../../../functions/dive'
 
 
 const OffersCard = (props) => {
@@ -32,7 +33,7 @@ const OffersCard = (props) => {
       <Card className={classes.container} variant="outlined">
         {console.log(!!(props.item.partner_vehicle.vehicle_photos))}
         <CardContent className={classes.contentContainer}>
-          <img className={classes.image} alt='car' src={!!(props.item.partner_vehicle.vehicle_photos) ? `http://localhost:8080/${props.item.partner_vehicle.vehicle_photos[0].name}` : '../../../../../images/imageNotFound.png'} />
+          <img className={classes.image} alt='car' src={props.item.partner_vehicle.vehicle_photos && props.item.partner_vehicle.vehicle_photos[0] && props.item.partner_vehicle.vehicle_photos[0].name ? `http://localhost:8080/${props.item.partner_vehicle.vehicle_photos[0].name}` : '../../../../../images/imageNotFound.png'} />
           <Paper elevation={0} className={classes.infoContainer}>
             <Typography className={classes.carModel}>{`${props.item.partner_vehicle.vehicle.make} ${props.item.partner_vehicle.vehicle.model}, ${props.item.partner_vehicle.year}`}</Typography>
             <p>{props.item.partner_vehicle.vehicle.vehicle_type.type}</p>

@@ -20,11 +20,20 @@ import { useStyles } from './styles';
 import langData from './langData';
 import dive from '../../../functions/dive';
 import actionLogout from '../../../redux/actions/logoutAction';
+import actionDeleteData from '../../../redux/actions/deleteData';
 
 const PublicDrawer = (props) => {
   const classes = useStyles();
   const loginData = useSelector((state) => dive`${state}syncReducer.token.payload.sub`);
+  const authData = useSelector((state) => state.promiseReducer.auth);
+  const regData = useSelector((state) => state.promiseReducer.register);
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(actionLogout());
+    if (authData) dispatch(actionDeleteData('auth'));
+    if (regData) dispatch(actionDeleteData('register'));
+  };
 
   useEffect(() => {
     loadCSS(
@@ -51,7 +60,7 @@ const PublicDrawer = (props) => {
             }
             <div className={classes.toolbarIcon}>
               {loginData
-                ? <IconButton style={{ padding: '0' }} onClick={() => dispatch(actionLogout())}>
+                ? <IconButton style={{ padding: '0' }} onClick={handleLogout}>
                   <Icon style={{ fontSize: '18px' }} className='fas fa-sign-out-alt' />
                 </IconButton>
                 : <IconButton style={{ padding: '0' }} onClick={() => props.history.push(`/${props.lang}/auth`)}>
