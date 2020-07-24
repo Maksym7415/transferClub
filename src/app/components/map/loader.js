@@ -4,7 +4,7 @@ import { LoadScript } from '@react-google-maps/api';
 const MapLoader = (props) => (
   <LoadScript
       id="script-loader"
-      googleMapsApiKey="AIzaSyDxy2xkxk7zDKEGtsXtIGEiaMdBVV3vH3Q"
+      // googleMapsApiKey="AIzaSyDxy2xkxk7zDKEGtsXtIGEiaMdBVV3vH3Q"
       libraries={['places']}
       url='https://maps.googleapis.com/maps/api/directions/json'
     >
